@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="tr" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Tasvir — Turn any PDF or topic into a visual study document</title>
+    <title>Tasvir — TYT ve AYT konu anlatımı dokümanı üret</title>
     <meta
       name="description"
-      content="Upload your lecture notes or type what you're studying. Tasvir writes an illustrated, printable document of up to 50 pages — AI study guide, textbook, report and kids' book generator. First document free."
+      content="Çalıştığın konuyu yaz ya da PDF'ini yükle. Tasvir 50 sayfaya kadar görselli, yazdırılabilir bir çalışma dokümanı hazırlar. 83 hazır TYT/AYT konu anlatımı ücretsiz açılıyor."
     />
-    <link rel="canonical" href="https://tasvir.ai/" />
-    <link rel="alternate" hreflang="en" href="https://tasvir.ai/" />
+    <link rel="canonical" href="https://tasvir.ai/tr/" />
     <link rel="alternate" hreflang="tr" href="https://tasvir.ai/tr/" />
+    <link rel="alternate" hreflang="en" href="https://tasvir.ai/" />
     <link rel="alternate" hreflang="x-default" href="https://tasvir.ai/" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0b0b12" />
@@ -21,13 +21,14 @@
     <meta property="og:site_name" content="Tasvir" />
     <meta
       property="og:title"
-      content="Tasvir — Turn any PDF or topic into a visual study document"
+      content="Tasvir — TYT ve AYT konu anlatımı dokümanı üret"
     />
     <meta
       property="og:description"
-      content="Upload your lecture notes or type a topic. Get an illustrated, printable document of up to 50 pages you can read, edit, print and share."
+      content="Çalıştığın konuyu yaz ya da PDF'ini yükle. 50 sayfaya kadar görselli, yazdırılabilir bir çalışma dokümanı."
     />
-    <meta property="og:url" content="https://tasvir.ai/" />
+    <meta property="og:url" content="https://tasvir.ai/tr/" />
+    <meta property="og:locale" content="tr_TR" />
     <meta
       property="og:image"
       content="https://i.ytimg.com/vi/tZgCnnuzCYA/maxresdefault.jpg"
@@ -36,25 +37,25 @@
     <meta property="og:image:height" content="720" />
     <meta
       property="og:image:alt"
-      content="A document page Tasvir generated from a single prompt."
+      content="Tasvir'in tek bir istemden ürettiği bir doküman sayfası."
     />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Tasvir — Turn any PDF or topic into a visual study document"
+      content="Tasvir — TYT ve AYT konu anlatımı dokümanı üret"
     />
     <meta
       name="twitter:description"
-      content="Upload your lecture notes or type a topic. Get an illustrated, printable document of up to 50 pages you can read, edit, print and share."
+      content="Çalıştığın konuyu yaz ya da PDF'ini yükle. 50 sayfaya kadar görselli, yazdırılabilir bir çalışma dokümanı."
     />
     <meta
       name="twitter:image"
       content="https://i.ytimg.com/vi/tZgCnnuzCYA/maxresdefault.jpg"
     />
 
-    <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+    <link rel="icon" type="image/svg+xml" href="../icon.svg" />
 
     <link rel="preconnect" href="https://www.youtube-nocookie.com" />
     <link rel="preconnect" href="https://i.ytimg.com" />
@@ -63,87 +64,50 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="../styles.css" />
 
     <!--
-      Add the analytics provider snippet here (Plausible / GA4 / PostHog).
-      The page already calls a provider-agnostic track() helper and tags every
-      app link with src/utm params, so events start flowing the moment a
-      snippet is present. Without one, tracking is a silent no-op.
+      Add the analytics provider snippet here (Plausible / GA4 / PostHog), the
+      same one the English page carries. The track() helper below is
+      provider-agnostic and stays a silent no-op without a snippet.
     -->
-
-    <!-- Structured data: helps video rich results in search -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        "name": "Tasvir — One prompt into a complete document",
-        "description": "Tasvir turns a PDF or a single prompt into a long-form, visual, printable document.",
-        "thumbnailUrl": "https://i.ytimg.com/vi/tZgCnnuzCYA/maxresdefault.jpg",
-        "uploadDate": "2026-07-12",
-        "contentUrl": "https://www.youtube.com/watch?v=tZgCnnuzCYA",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/tZgCnnuzCYA",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Tasvir",
-          "url": "https://tasvir.ai/"
-        }
-      }
-    </script>
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Tasvir",
-        "applicationCategory": "EducationalApplication",
-        "operatingSystem": "Web, iOS, Android",
-        "url": "https://tasvir.ai/",
-        "description": "Tasvir turns a PDF or a single prompt into an illustrated, printable document of up to 50 pages — study guides, textbooks, reports and children's books.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD",
-          "description": "First document free, then credit packs."
-        }
-      }
-    </script>
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
+        "inLanguage": "tr",
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Do you store the file I upload?",
+            "name": "Yüklediğim dosyayı saklıyor musunuz?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Tasvir reads your PDF, Word file or image once to understand it, uses it for that single generation, and does not store it."
+              "text": "Hayır. Tasvir PDF, Word dosyanı ya da görselini içeriğini anlamak için bir kez okur, yalnızca o üretimde kullanır ve saklamaz."
             }
           },
           {
             "@type": "Question",
-            "name": "How is Tasvir different from ChatGPT?",
+            "name": "Bunun ChatGPT'den farkı ne?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "ChatGPT answers questions. Tasvir builds documents: a planner agent designs the audience and page flow first, then generates up to 50 paginated pages with images, tables, charts and diagrams you can print."
+              "text": "ChatGPT soru cevaplar. Tasvir doküman kurar: planlayıcı ajan önce hedef kitleyi ve sayfa akışını belirler, sonra şekil, tablo, grafik ve formül içeren, 50 sayfaya kadar yazdırılabilir bir doküman üretir."
             }
           },
           {
             "@type": "Question",
-            "name": "Can I change a page I do not like?",
+            "name": "Bir sayfayı beğenmezsem?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. You can regenerate any single page — make it more visual, simpler, longer, or replace an image — without rebuilding the whole document."
+              "text": "Sadece o sayfayı yeniden üretirsin. Daha görsel, daha basit ya da daha uzun yapabilirsin; diğer sayfalara dokunulmaz."
             }
           },
           {
             "@type": "Question",
-            "name": "Which languages does Tasvir support?",
+            "name": "TYT ve AYT dışında da çalışıyor mu?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Write your prompt in any language and Tasvir generates the whole document in that language."
+              "text": "Evet. Tasvir konuya bağlı değil: ders notu, üniversite dersi, akademik rapor, dergi ya da çocuk kitabı da üretir. İstemini hangi dilde yazarsan doküman o dilde gelir."
             }
           }
         ]
@@ -158,10 +122,10 @@
         <nav
           class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6"
         >
-          <a href="/" class="flex items-center gap-2" aria-label="Tasvir home">
+          <a href="/tr/" class="flex items-center gap-2" aria-label="Tasvir ana sayfa">
             <img
-              src="./icon.svg"
-              alt="Tasvir logo"
+              src="../icon.svg"
+              alt="Tasvir logosu"
               width="32"
               height="32"
               class="h-8 w-8 rounded-lg"
@@ -171,56 +135,50 @@
 
           <div class="flex items-center gap-2 sm:gap-3">
             <!--
-              Turkish lives at its own URL, so the switch is a link a crawler can
-              follow rather than an in-place text swap.
+              A real anchor rather than the English page's JS toggle: the Turkish
+              page has its own URL, so the language switch has to be a link a
+              crawler can follow.
             -->
             <a
-              href="/tr/"
-              hreflang="tr"
+              href="/"
+              hreflang="en"
               class="inline-flex h-11 items-center rounded-full border border-white/10 px-3.5 text-sm font-medium text-slate-200 transition hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-              >TR</a
+              >EN</a
             >
-
             <a
               href="https://app.tasvir.ai/signin"
               data-app-link
               data-cta="header-signin"
               class="hidden h-11 items-center rounded-full px-4 text-sm font-medium text-slate-200 transition hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:inline-flex"
-              data-i18n="signIn"
-              >Sign in</a
+              >Giriş yap</a
             >
             <a
               href="https://app.tasvir.ai/signup"
               data-app-link
               data-cta="header"
               class="inline-flex h-11 items-center rounded-full bg-brand px-4 text-sm font-semibold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-              data-i18n="signUp"
-              >Start free</a
+              >Ücretsiz başla</a
             >
           </div>
         </nav>
       </header>
 
-      <!-- Hero: the demo is the hero visual, the CTA sits right under it -->
+      <!-- Hero -->
       <main class="w-full">
         <div
           class="mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 py-8 text-center sm:px-6 sm:py-12"
         >
           <h1
             class="max-w-3xl text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl"
-            data-i18n="heroTitle"
           >
-            Turn any PDF or topic into a visual study document.
+            Çalıştığın konuyu görselli bir çalışma dokümanına çevir.
           </h1>
-          <p class="max-w-xl text-base text-slate-300 sm:text-lg" data-i18n="heroSubtitle">
-            Upload your lecture notes or type what you're studying. Tasvir
-            writes up to 50 illustrated pages you can read, edit and print.
+          <p class="max-w-xl text-base text-slate-300 sm:text-lg">
+            TYT, AYT ya da üniversite dersi — konuyu yaz veya ders notunu yükle.
+            Tasvir 50 sayfaya kadar şekilli, grafikli, yazdırılabilir sayfa
+            hazırlar.
           </p>
 
-          <!--
-            Width is capped by viewport height so the 16:9 frame can never grow
-            tall enough to push the CTA below the fold on a 768px-high laptop.
-          -->
           <div
             id="video-frame"
             class="relative mx-auto aspect-video w-full max-w-[calc(42vh*16/9)] overflow-hidden rounded-2xl border border-white/10 bg-black shadow-2xl shadow-black/50"
@@ -229,7 +187,7 @@
               type="button"
               id="video-play"
               class="group absolute inset-0 flex h-full w-full items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-              aria-label="Play the Tasvir demo video"
+              aria-label="Tasvir demo videosunu oynat"
             >
               <img
                 src="https://i.ytimg.com/vi/tZgCnnuzCYA/maxresdefault.jpg"
@@ -251,7 +209,7 @@
                 >
                   <path d="M8 5v14l11-7z" />
                 </svg>
-                <span data-i18n="videoPlay">Watch the 90s demo</span>
+                <span>90 saniyelik demoyu izle</span>
               </span>
             </button>
           </div>
@@ -262,12 +220,11 @@
               data-app-link
               data-cta="hero"
               class="inline-flex h-14 items-center justify-center rounded-full bg-brand px-8 text-base font-semibold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b12]"
-              data-i18n="cta"
             >
-              Create your first document — free
+              İlk dokümanını ücretsiz oluştur
             </a>
-            <p class="text-sm text-slate-400" data-i18n="ctaNote">
-              Your first document is free · No credit card · Any language
+            <p class="text-sm text-slate-400">
+              İlk dokümanın ücretsiz · Kart gerekmez · Her dilde
             </p>
           </div>
         </div>
@@ -276,41 +233,38 @@
       <!-- How it works -->
       <section class="w-full border-t border-white/5">
         <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-14">
-          <h2
-            class="text-center text-2xl font-bold tracking-tight sm:text-3xl"
-            data-i18n="howTitle"
-          >
-            Three steps, about five minutes
+          <h2 class="text-center text-2xl font-bold tracking-tight sm:text-3xl">
+            Üç adım, yaklaşık beş dakika
           </h2>
           <ol class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
             <li class="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left">
               <span class="text-sm font-semibold text-brand-light">01</span>
-              <p class="mt-2 text-base font-semibold text-slate-100" data-i18n="how1Title">
-                Drop a PDF or type a topic
+              <p class="mt-2 text-base font-semibold text-slate-100">
+                Konuyu yaz ya da PDF bırak
               </p>
-              <p class="mt-1.5 text-sm text-slate-300" data-i18n="how1Body">
-                Lecture notes, a Word file, an image, or just a sentence about
-                what you need.
+              <p class="mt-1.5 text-sm text-slate-300">
+                "AYT türev, çözümlü sorularla" yazmak yeterli. Ders notunu,
+                Word dosyanı ya da bir fotoğrafı da yükleyebilirsin.
               </p>
             </li>
             <li class="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left">
               <span class="text-sm font-semibold text-brand-light">02</span>
-              <p class="mt-2 text-base font-semibold text-slate-100" data-i18n="how2Title">
-                A planner agent designs it
+              <p class="mt-2 text-base font-semibold text-slate-100">
+                Planlayıcı ajan tasarlar
               </p>
-              <p class="mt-1.5 text-sm text-slate-300" data-i18n="how2Body">
-                It decides the audience, page flow, theme and visuals before a
-                single word is written.
+              <p class="mt-1.5 text-sm text-slate-300">
+                Tek kelime yazılmadan önce hedef kitleyi, sayfa akışını, temayı
+                ve görselleri belirler.
               </p>
             </li>
             <li class="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left">
               <span class="text-sm font-semibold text-brand-light">03</span>
-              <p class="mt-2 text-base font-semibold text-slate-100" data-i18n="how3Title">
-                Read, fix any page, print
+              <p class="mt-2 text-base font-semibold text-slate-100">
+                Oku, sayfayı düzelt, yazdır
               </p>
-              <p class="mt-1.5 text-sm text-slate-300" data-i18n="how3Body">
-                Do not like page 7? Regenerate just that page. Then export to
-                A4, A3 or share a link.
+              <p class="mt-1.5 text-sm text-slate-300">
+                7. sayfayı beğenmedin mi? Sadece o sayfayı yeniden üret. Sonra
+                A4 ya da A3 olarak yazdır.
               </p>
             </li>
           </ol>
@@ -321,26 +275,23 @@
       <section class="w-full border-t border-white/5 bg-black/20">
         <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
           <div class="mx-auto mb-8 max-w-2xl text-center">
-            <h2
-              class="text-2xl font-bold tracking-tight sm:text-3xl"
-              data-i18n="examplesTitle"
-            >
-              Open a finished document
+            <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">
+              Hazır bir konu anlatımı aç
             </h2>
-            <p class="mt-3 text-slate-300" data-i18n="examplesSubtitle">
-              No signup needed. These are real documents Tasvir generated, live
-              in the app.
+            <p class="mt-3 text-slate-300">
+              Kayıt gerekmiyor. Bunlar Tasvir'in ürettiği, uygulamada canlı duran
+              gerçek dokümanlar.
             </p>
           </div>
 
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <a
-              href="https://app.tasvir.ai/c/565874419d853973ac8ad491c7655b67500cefdc3fbe36753c862db1a8589664/1"
+              href="https://app.tasvir.ai/c/3302b830f081856c88d20d1955d9d64fffa8d7bdabb8532ee160ef0f5d1925a4/1"
               target="_blank"
               rel="noopener"
               data-app-link
               data-cta="example"
-              data-example="parabola-math"
+              data-example="tyt-fizik-hareket"
               class="group flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
@@ -349,7 +300,7 @@
                 aria-hidden="true"
               >
                 <img
-                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/565874419d853973ac8ad491c7655b67500cefdc3fbe36753c862db1a8589664"
+                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/3302b830f081856c88d20d1955d9d64fffa8d7bdabb8532ee160ef0f5d1925a4"
                   alt=""
                   width="420"
                   height="594"
@@ -361,29 +312,27 @@
               </span>
               <span
                 class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
-                data-i18n="tagStudy"
-                >Study notes</span
+                >TYT Fizik</span
               >
               <span class="text-base font-semibold text-slate-100"
-                >Parabolas — Advanced Math</span
+                >Hareket ve Kuvvet</span
               >
-              <span class="text-sm text-slate-400" data-i18n="exParabola"
-                >Graphs, worked examples and formula layout for exam prep.</span
+              <span class="text-sm text-slate-400"
+                >Hız ve ivme, pist üzerinden anlatılmış; grafikli ve şekilli.</span
               >
               <span
                 class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
-                data-i18n="openExample"
-                >Open live example &rarr;</span
+                >Dokümanı aç &rarr;</span
               >
             </a>
 
             <a
-              href="https://app.tasvir.ai/c/4c7fd571f7dfb2b7d8ab36c1b23fd181e3b4415aad3361fd4cd5779893dbc693/1"
+              href="https://app.tasvir.ai/c/9ac571a480afefadde8e70e6c9baee2be68c697f35979de3648c965b881068c7/1"
               target="_blank"
               rel="noopener"
               data-app-link
               data-cta="example"
-              data-example="analytic-geometry"
+              data-example="ayt-matematik-turev"
               class="group flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
@@ -392,7 +341,7 @@
                 aria-hidden="true"
               >
                 <img
-                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/4c7fd571f7dfb2b7d8ab36c1b23fd181e3b4415aad3361fd4cd5779893dbc693"
+                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/9ac571a480afefadde8e70e6c9baee2be68c697f35979de3648c965b881068c7"
                   alt=""
                   width="420"
                   height="594"
@@ -404,29 +353,26 @@
               </span>
               <span
                 class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
-                data-i18n="tagStudy"
-                >Study notes</span
+                >AYT Matematik</span
               >
-              <span class="text-base font-semibold text-slate-100"
-                >Analytic Geometry: Lines &amp; Circles</span
-              >
-              <span class="text-sm text-slate-400" data-i18n="exGeometry"
-                >Diagrams next to every rule, so the theory stays readable.</span
+              <span class="text-base font-semibold text-slate-100">Türev</span>
+              <span class="text-sm text-slate-400"
+                >Anlık hız ve nabız değişimiyle kurulmuş anlatım, çözümlü
+                sorular.</span
               >
               <span
                 class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
-                data-i18n="openExample"
-                >Open live example &rarr;</span
+                >Dokümanı aç &rarr;</span
               >
             </a>
 
             <a
-              href="https://app.tasvir.ai/c/50d6b8b64239986c8ea156f99660d6e56efb1e9f0ab14722ceca4e8040ec9830/1"
+              href="https://app.tasvir.ai/c/f57dd28dc31cbef57bfe584d5724af0a7689d9bcc99d39826c9b815c529edad8/1"
               target="_blank"
               rel="noopener"
               data-app-link
               data-cta="example"
-              data-example="gradient-descent"
+              data-example="tyt-geometri-ucgenler"
               class="group flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
@@ -435,7 +381,7 @@
                 aria-hidden="true"
               >
                 <img
-                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/50d6b8b64239986c8ea156f99660d6e56efb1e9f0ab14722ceca4e8040ec9830"
+                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/f57dd28dc31cbef57bfe584d5724af0a7689d9bcc99d39826c9b815c529edad8"
                   alt=""
                   width="420"
                   height="594"
@@ -447,29 +393,27 @@
               </span>
               <span
                 class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
-                data-i18n="tagTechnical"
-                >Technical</span
+                >TYT Geometri</span
               >
               <span class="text-base font-semibold text-slate-100"
-                >Machine Learning &amp; Gradient Descent</span
+                >Üçgenler, Benzerlik ve Alan</span
               >
-              <span class="text-sm text-slate-400" data-i18n="exMl"
-                >An algorithm explained with technical diagrams and code.</span
+              <span class="text-sm text-slate-400"
+                >Her kuralın yanında bir çizim, teori okunabilir kalıyor.</span
               >
               <span
                 class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
-                data-i18n="openExample"
-                >Open live example &rarr;</span
+                >Dokümanı aç &rarr;</span
               >
             </a>
 
             <a
-              href="https://app.tasvir.ai/c/299ee701251eb8d8f917dc693508f2cfabb0085f68dd9141886a6af9955cca39/1"
+              href="https://app.tasvir.ai/c/dbafa0c424844795c1a0dd49216f675a3882af9062d481d78ff168f366af6412/1"
               target="_blank"
               rel="noopener"
               data-app-link
               data-cta="example"
-              data-example="renewable-energy"
+              data-example="ayt-biyoloji-fizyoloji"
               class="group flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
@@ -478,7 +422,7 @@
                 aria-hidden="true"
               >
                 <img
-                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/299ee701251eb8d8f917dc693508f2cfabb0085f68dd9141886a6af9955cca39"
+                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/dbafa0c424844795c1a0dd49216f675a3882af9062d481d78ff168f366af6412"
                   alt=""
                   width="420"
                   height="594"
@@ -490,29 +434,28 @@
               </span>
               <span
                 class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
-                data-i18n="tagAcademic"
-                >Academic report</span
+                >AYT Biyoloji</span
               >
               <span class="text-base font-semibold text-slate-100"
-                >Turkey's Renewable Energy Policies</span
+                >İnsan Fizyolojisi</span
               >
-              <span class="text-sm text-slate-400" data-i18n="exEnergy"
-                >A thesis-style draft with data tables and charts.</span
+              <span class="text-sm text-slate-400"
+                >Sinir ve endokrin sistem, koşu sırasında vücutta olanlar
+                üzerinden.</span
               >
               <span
                 class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
-                data-i18n="openExample"
-                >Open live example &rarr;</span
+                >Dokümanı aç &rarr;</span
               >
             </a>
 
             <a
-              href="https://app.tasvir.ai/c/0a452cf58022c0d1482da8402a3f9791f833c7c9278df985df2f063822728a2c/1"
+              href="https://app.tasvir.ai/c/8e443781100f8df86f778c8d169d43e7a73ecf926a691c255066d3d868afc8bb/1"
               target="_blank"
               rel="noopener"
               data-app-link
               data-cta="example"
-              data-example="human-body-atlas"
+              data-example="tyt-kimya-asit-baz"
               class="group flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
@@ -521,7 +464,7 @@
                 aria-hidden="true"
               >
                 <img
-                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/0a452cf58022c0d1482da8402a3f9791f833c7c9278df985df2f063822728a2c"
+                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/8e443781100f8df86f778c8d169d43e7a73ecf926a691c255066d3d868afc8bb"
                   alt=""
                   width="420"
                   height="594"
@@ -533,29 +476,27 @@
               </span>
               <span
                 class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
-                data-i18n="tagKids"
-                >Kids</span
+                >TYT Kimya</span
               >
               <span class="text-base font-semibold text-slate-100"
-                >Human Body Atlas</span
+                >Asitler, Bazlar ve Tuzlar</span
               >
-              <span class="text-sm text-slate-400" data-i18n="exAtlas"
-                >Every body system illustrated, printable as a workbook.</span
+              <span class="text-sm text-slate-400"
+                >pH ve nötrleşme, mide asidi ve ilaç örnekleriyle.</span
               >
               <span
                 class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
-                data-i18n="openExample"
-                >Open live example &rarr;</span
+                >Dokümanı aç &rarr;</span
               >
             </a>
 
             <a
-              href="https://app.tasvir.ai/c/280d3ec831eb7728c4a47b62edc73a4f5125f53258ae398ee2dfc465b017f60a/1"
+              href="https://app.tasvir.ai/c/990f2bc4a6949c60167115ea09c6da2a3d4adc3203a38bd097b76d067feb5862/1"
               target="_blank"
               rel="noopener"
               data-app-link
               data-cta="example"
-              data-example="republic-100"
+              data-example="ayt-matematik-trigonometri"
               class="group flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
@@ -564,7 +505,7 @@
                 aria-hidden="true"
               >
                 <img
-                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/280d3ec831eb7728c4a47b62edc73a4f5125f53258ae398ee2dfc465b017f60a"
+                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/990f2bc4a6949c60167115ea09c6da2a3d4adc3203a38bd097b76d067feb5862"
                   alt=""
                   width="420"
                   height="594"
@@ -576,31 +517,28 @@
               </span>
               <span
                 class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
-                data-i18n="tagMagazine"
-                >Magazine</span
+                >AYT Matematik</span
               >
               <span class="text-base font-semibold text-slate-100"
-                >100th Anniversary of the Turkish Republic</span
+                >Trigonometri</span
               >
-              <span class="text-sm text-slate-400" data-i18n="exRepublic"
-                >Editorial layout, historical timeline and charts.</span
+              <span class="text-sm text-slate-400"
+                >Birim çember ve açılar, viraj geometrisi benzetmesiyle.</span
               >
               <span
                 class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
-                data-i18n="openExample"
-                >Open live example &rarr;</span
+                >Dokümanı aç &rarr;</span
               >
             </a>
           </div>
 
           <div class="mt-8 text-center">
             <a
-              href="https://github.com/Tasvir-app/Tasvir"
+              href="https://github.com/Tasvir-app/tasvir-yks"
               target="_blank"
               rel="noopener"
               class="inline-flex h-11 items-center gap-1 rounded-full px-4 text-sm font-medium text-slate-300 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-              data-i18n="examplesMore"
-              >See all examples &rarr;</a
+              >83 TYT/AYT konusunun tamamını gör &rarr;</a
             >
           </div>
         </div>
@@ -609,26 +547,21 @@
       <!-- Pricing honesty -->
       <section class="w-full border-t border-white/5">
         <div class="mx-auto max-w-3xl px-4 py-12 text-center sm:px-6 sm:py-14">
-          <h2
-            class="text-2xl font-bold tracking-tight sm:text-3xl"
-            data-i18n="pricingTitle"
-          >
-            Start free. Then pay only for what you generate.
+          <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">
+            Ücretsiz başla. Sonra sadece ürettiğin kadar öde.
           </h2>
-          <p class="mx-auto mt-3 max-w-xl text-slate-300" data-i18n="pricingBody">
-            Your first document is on us. After that you buy credits — no
-            subscription lock-in, no monthly fee for a month you did not study.
-            Credits are only spent when you generate a document or regenerate a
-            page.
+          <p class="mx-auto mt-3 max-w-xl text-slate-300">
+            İlk doküman bizden. Sonrası için kredi alırsın — abonelik zorunluluğu
+            yok, çalışmadığın ay için aidat yok. Kredi yalnızca doküman
+            üretirken ya da bir sayfayı yeniden üretirken harcanır.
           </p>
           <a
             href="https://app.tasvir.ai/signup"
             data-app-link
             data-cta="pricing"
             class="mt-6 inline-flex h-14 items-center justify-center rounded-full bg-brand px-8 text-base font-semibold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b12]"
-            data-i18n="pricingCta"
           >
-            See credits and start free
+            Kredileri gör ve ücretsiz başla
           </a>
         </div>
       </section>
@@ -636,18 +569,15 @@
       <!-- FAQ -->
       <section class="w-full border-t border-white/5 bg-black/20">
         <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-14">
-          <h2
-            class="text-center text-2xl font-bold tracking-tight sm:text-3xl"
-            data-i18n="faqTitle"
-          >
-            Before you sign up
+          <h2 class="text-center text-2xl font-bold tracking-tight sm:text-3xl">
+            Kayıt olmadan önce
           </h2>
           <div class="mt-8 flex flex-col gap-3">
             <details class="group rounded-2xl border border-white/10 bg-white/[0.03] px-5">
               <summary
                 class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
-                <span data-i18n="faq1Q">Do you store the file I upload?</span>
+                <span>Yüklediğim dosyayı saklıyor musunuz?</span>
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -659,16 +589,16 @@
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300" data-i18n="faq1A">
-                No. Tasvir reads your PDF, Word file or image once to understand
-                it, uses it for that single generation, and does not store it.
+              <p class="pb-4 text-sm text-slate-300">
+                Hayır. Tasvir PDF, Word dosyanı ya da görselini içeriğini anlamak
+                için bir kez okur, yalnızca o üretimde kullanır ve saklamaz.
               </p>
             </details>
             <details class="group rounded-2xl border border-white/10 bg-white/[0.03] px-5">
               <summary
                 class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
-                <span data-i18n="faq2Q">How is this different from ChatGPT?</span>
+                <span>Bunun ChatGPT'den farkı ne?</span>
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -680,18 +610,18 @@
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300" data-i18n="faq2A">
-                ChatGPT answers questions. Tasvir builds documents — a planner
-                agent decides the audience and page flow first, then generates up
-                to 50 paginated pages with images, tables, charts and diagrams
-                you can actually print.
+              <p class="pb-4 text-sm text-slate-300">
+                ChatGPT soru cevaplar. Tasvir doküman kurar — planlayıcı ajan önce
+                hedef kitleyi ve sayfa akışını belirler, sonra şekil, tablo,
+                grafik ve formül içeren, 50 sayfaya kadar, gerçekten
+                yazdırılabilir bir doküman üretir.
               </p>
             </details>
             <details class="group rounded-2xl border border-white/10 bg-white/[0.03] px-5">
               <summary
                 class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
-                <span data-i18n="faq3Q">What if I do not like one page?</span>
+                <span>Bir sayfayı beğenmezsem?</span>
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -703,16 +633,16 @@
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300" data-i18n="faq3A">
-                Regenerate just that page. Make it more visual, simpler, longer,
-                or swap an image — every other page stays untouched.
+              <p class="pb-4 text-sm text-slate-300">
+                Sadece o sayfayı yeniden üret. Daha görsel, daha basit, daha uzun
+                yap ya da görseli değiştir — diğer sayfalara dokunulmaz.
               </p>
             </details>
             <details class="group rounded-2xl border border-white/10 bg-white/[0.03] px-5">
               <summary
                 class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
-                <span data-i18n="faq4Q">Which languages does it support?</span>
+                <span>TYT ve AYT dışında da çalışıyor mu?</span>
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -724,9 +654,10 @@
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300" data-i18n="faq4A">
-                Write your prompt in any language and Tasvir generates the whole
-                document in that language.
+              <p class="pb-4 text-sm text-slate-300">
+                Evet. Ders notu, üniversite dersi, akademik rapor, dergi ya da
+                çocuk kitabı da üretir. İstemini hangi dilde yazarsan doküman o
+                dilde gelir.
               </p>
             </details>
           </div>
@@ -738,24 +669,18 @@
         <div
           class="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-12 text-center sm:px-6 sm:py-14"
         >
-          <h2
-            class="text-2xl font-bold tracking-tight sm:text-3xl"
-            data-i18n="finalTitle"
-          >
-            What are you studying this week?
+          <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">
+            Bu hafta hangi konuya çalışıyorsun?
           </h2>
           <a
             href="https://app.tasvir.ai/signup"
             data-app-link
             data-cta="footer"
             class="inline-flex h-14 items-center justify-center rounded-full bg-brand px-8 text-base font-semibold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b12]"
-            data-i18n="cta"
           >
-            Create your first document — free
+            İlk dokümanını ücretsiz oluştur
           </a>
-          <p class="text-sm text-slate-400" data-i18n="tagline">
-            Generate. Read. Learn. Share. Print.
-          </p>
+          <p class="text-sm text-slate-400">Üret. Oku. Öğren. Paylaş. Yazdır.</p>
         </div>
       </section>
 
@@ -769,26 +694,22 @@
             <a
               href="mailto:support@tasvir.ai"
               class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-white"
-              data-i18n="contact"
-              >Contact</a
+              >İletişim</a
             >
             <a
               href="https://app.tasvir.ai/privacy"
               class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-white"
-              data-i18n="privacy"
-              >Privacy Policy</a
+              >Gizlilik Politikası</a
             >
             <a
               href="https://app.tasvir.ai/terms"
               class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-white"
-              data-i18n="terms"
-              >Terms of Use</a
+              >Kullanım Şartları</a
             >
             <a
               href="https://app.tasvir.ai/main?legal=kvkk"
               class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-white"
-              data-i18n="kvkk"
-              >KVKK Notice</a
+              >KVKK Aydınlatma Metni</a
             >
           </div>
         </div>
@@ -797,76 +718,8 @@
 
     <script>
       (function () {
-        var translations = {
-          en: {
-            htmlLang: "en",
-            title: "Tasvir — Turn any PDF or topic into a visual study document",
-            description:
-              "Upload your lecture notes or type what you're studying. Tasvir writes an illustrated, printable document of up to 50 pages — AI study guide, textbook, report and kids' book generator. First document free.",
-            signIn: "Sign in",
-            signUp: "Start free",
-            heroTitle: "Turn any PDF or topic into a visual study document.",
-            heroSubtitle:
-              "Upload your lecture notes or type what you're studying. Tasvir writes up to 50 illustrated pages you can read, edit and print.",
-            videoPlay: "Watch the 90s demo",
-            cta: "Create your first document — free",
-            ctaNote: "Your first document is free · No credit card · Any language",
-            howTitle: "Three steps, about five minutes",
-            how1Title: "Drop a PDF or type a topic",
-            how1Body:
-              "Lecture notes, a Word file, an image, or just a sentence about what you need.",
-            how2Title: "A planner agent designs it",
-            how2Body:
-              "It decides the audience, page flow, theme and visuals before a single word is written.",
-            how3Title: "Read, fix any page, print",
-            how3Body:
-              "Do not like page 7? Regenerate just that page. Then export to A4, A3 or share a link.",
-            examplesTitle: "Open a finished document",
-            examplesSubtitle:
-              "No signup needed. These are real documents Tasvir generated, live in the app.",
-            tagStudy: "Study notes",
-            tagTechnical: "Technical",
-            tagAcademic: "Academic report",
-            tagKids: "Kids",
-            tagMagazine: "Magazine",
-            exParabola: "Graphs, worked examples and formula layout for exam prep.",
-            exGeometry: "Diagrams next to every rule, so the theory stays readable.",
-            exMl: "An algorithm explained with technical diagrams and code.",
-            exEnergy: "A thesis-style draft with data tables and charts.",
-            exAtlas: "Every body system illustrated, printable as a workbook.",
-            exRepublic: "Editorial layout, historical timeline and charts.",
-            openExample: "Open live example \u2192",
-            examplesMore: "See all examples \u2192",
-            pricingTitle: "Start free. Then pay only for what you generate.",
-            pricingBody:
-              "Your first document is on us. After that you buy credits — no subscription lock-in, no monthly fee for a month you did not study. Credits are only spent when you generate a document or regenerate a page.",
-            pricingCta: "See credits and start free",
-            faqTitle: "Before you sign up",
-            faq1Q: "Do you store the file I upload?",
-            faq1A:
-              "No. Tasvir reads your PDF, Word file or image once to understand it, uses it for that single generation, and does not store it.",
-            faq2Q: "How is this different from ChatGPT?",
-            faq2A:
-              "ChatGPT answers questions. Tasvir builds documents — a planner agent decides the audience and page flow first, then generates up to 50 paginated pages with images, tables, charts and diagrams you can actually print.",
-            faq3Q: "What if I do not like one page?",
-            faq3A:
-              "Regenerate just that page. Make it more visual, simpler, longer, or swap an image — every other page stays untouched.",
-            faq4Q: "Which languages does it support?",
-            faq4A:
-              "Write your prompt in any language and Tasvir generates the whole document in that language.",
-            finalTitle: "What are you studying this week?",
-            tagline: "Generate. Read. Learn. Share. Print.",
-            contact: "Contact",
-            privacy: "Privacy Policy",
-            terms: "Terms of Use",
-            kvkk: "KVKK Notice",
-          },
-        };
+        var LANG = "tr";
 
-        var currentLang = "en";
-
-        // Provider-agnostic: fires into whichever analytics snippet is loaded,
-        // stays a no-op when none is.
         function track(event, props) {
           try {
             if (typeof window.plausible === "function") {
@@ -881,49 +734,28 @@
           } catch (e) {}
         }
 
-        // Tag every outbound app link so the backend can attribute a signup to
-        // this page and to the exact CTA that produced it.
-        function tagAppLinks() {
-          var params = new URLSearchParams(window.location.search);
-          document.querySelectorAll("[data-app-link]").forEach(function (link) {
-            var url = new URL(link.href);
-            url.searchParams.set("src", "landing");
-            url.searchParams.set("cta", link.getAttribute("data-cta") || "unknown");
-            url.searchParams.set("lang", currentLang);
-            ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(
-              function (key) {
-                var value = params.get(key);
-                if (value) url.searchParams.set(key, value);
-              }
-            );
-            link.href = url.toString();
-          });
-        }
-
-        function applyLang(lang) {
-          var dict = translations[lang] || translations.en;
-          currentLang = translations[lang] ? lang : "en";
-
-          document.documentElement.lang = dict.htmlLang;
-          document.title = dict.title;
-          var metaDesc = document.querySelector('meta[name="description"]');
-          if (metaDesc) metaDesc.setAttribute("content", dict.description);
-
-          document.querySelectorAll("[data-i18n]").forEach(function (el) {
-            var key = el.getAttribute("data-i18n");
-            if (dict[key]) el.textContent = dict[key];
-          });
-
-          tagAppLinks();
-        }
-
+        // Same attribution contract as the English page, with its own src so a
+        // signup can be traced to the Turkish page rather than the site.
+        var params = new URLSearchParams(window.location.search);
         document.querySelectorAll("[data-app-link]").forEach(function (link) {
+          var url = new URL(link.href);
+          url.searchParams.set("src", "landing-tr");
+          url.searchParams.set("cta", link.getAttribute("data-cta") || "unknown");
+          url.searchParams.set("lang", LANG);
+          ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(
+            function (key) {
+              var value = params.get(key);
+              if (value) url.searchParams.set(key, value);
+            }
+          );
+          link.href = url.toString();
+
           link.addEventListener("click", function () {
             var cta = link.getAttribute("data-cta") || "unknown";
             track(cta === "example" ? "example_opened" : "cta_clicked", {
               cta: cta,
               example: link.getAttribute("data-example") || null,
-              lang: currentLang,
+              lang: LANG,
             });
           });
         });
@@ -936,23 +768,20 @@
             iframe.className = "absolute inset-0 h-full w-full";
             iframe.src =
               "https://www.youtube-nocookie.com/embed/tZgCnnuzCYA?rel=0&autoplay=1";
-            iframe.title = "Tasvir demo video";
+            iframe.title = "Tasvir demo videosu";
             iframe.referrerPolicy = "strict-origin-when-cross-origin";
             iframe.allow =
               "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
             iframe.allowFullscreen = true;
             frame.replaceChildren(iframe);
-            track("video_played", { lang: currentLang });
+            track("video_played", { lang: LANG });
           });
         }
 
         var yearEl = document.getElementById("year");
         if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-        // English-first regardless of browser locale; Turkish visitors get their
-        // own page at /tr/ rather than a translated copy of this one.
-        applyLang("en");
-        track("landing_view", { lang: currentLang });
+        track("landing_view", { lang: LANG });
       })();
     </script>
   </body>
