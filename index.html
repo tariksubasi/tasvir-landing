@@ -158,6 +158,14 @@
         "mainEntity": [
           {
             "@type": "Question",
+            "name": "Is the document written by AI?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The AI plans the document, writes the pages and designs the visuals. You stay in control: you approve the plan before anything is written, you choose the length, and you can regenerate any single page you do not like."
+            }
+          },
+          {
+            "@type": "Question",
             "name": "What do I get for free?",
             "acceptedAnswer": {
               "@type": "Answer",
@@ -720,6 +728,29 @@
               <summary
                 class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
+                <span data-i18n="faqAiQ">Is the document written by AI?</span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                  class="h-5 w-5 shrink-0 text-brand-light transition-transform group-open:rotate-180"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </summary>
+              <p class="pb-4 text-sm text-slate-300" data-i18n="faqAiA">
+                Yes. The AI plans the document, writes the pages and designs
+                the visuals. You stay in control: you approve the plan before
+                anything is written, you choose the length, and you can
+                regenerate any single page you do not like.
+              </p>
+            </details>
+            <details class="group rounded-2xl border border-white/10 bg-white/[0.03] px-5">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+              >
                 <span data-i18n="faq0Q">What do I get for free?</span>
                 <svg
                   viewBox="0 0 24 24"
@@ -945,6 +976,9 @@
               "You start with 300 credits — about five pages, enough for a complete first document. After that you buy credits: no subscription lock-in, no monthly fee for a month you did not study. Credits are only spent when you generate a document or regenerate a page.",
             pricingCta: "See credits and start free",
             faqTitle: "Before you sign up",
+            faqAiQ: "Is the document written by AI?",
+            faqAiA:
+              "Yes. The AI plans the document, writes the pages and designs the visuals. You stay in control: you approve the plan before anything is written, you choose the length, and you can regenerate any single page you do not like.",
             faq0Q: "What do I get for free?",
             faq0A:
               "300 credits, once, when you create your account — about five pages at balanced quality with AI images, valid for 30 days and no card required. When they run out you buy a credit pack; there is no subscription.",
