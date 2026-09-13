@@ -163,12 +163,13 @@
 
           <div class="flex items-center gap-2 sm:gap-3">
             <!--
-              A real anchor rather than the English page's JS toggle: the Turkish
-              page has its own URL, so the language switch has to be a link a
-              crawler can follow.
+              A real anchor rather than a JS toggle, and ?lang=en on purpose:
+              the English page redirects a Turkish browser here, so without an
+              explicit signal this link would bounce straight back. The English
+              page stores the choice, so it only has to be made once.
             -->
             <a
-              href="/"
+              href="/?lang=en"
               hreflang="en"
               class="inline-flex h-11 items-center rounded-full border border-white/10 px-3.5 text-sm font-medium text-slate-200 transition hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
               >EN</a
@@ -314,12 +315,12 @@
 
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <a
-              href="https://app.tasvir.ai/c/3302b830f081856c88d20d1955d9d64fffa8d7bdabb8532ee160ef0f5d1925a4/1"
+              href="https://app.tasvir.ai/c/6d27650a27b10795855d6a6c7168c684b46c52747eab86b7db7600026c128662/1"
               target="_blank"
               rel="noopener"
               data-app-link
               data-cta="example"
-              data-example="tyt-fizik-hareket"
+              data-example="tyt-matematik-temel-kavramlar"
               class="group flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
@@ -328,7 +329,7 @@
                 aria-hidden="true"
               >
                 <img
-                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/3302b830f081856c88d20d1955d9d64fffa8d7bdabb8532ee160ef0f5d1925a4"
+                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/6d27650a27b10795855d6a6c7168c684b46c52747eab86b7db7600026c128662"
                   alt=""
                   width="420"
                   height="594"
@@ -340,13 +341,13 @@
               </span>
               <span
                 class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
-                >TYT Fizik</span
+                >TYT Matematik</span
               >
               <span class="text-base font-semibold text-slate-100"
-                >Hareket ve Kuvvet</span
+                >Temel Kavramlar</span
               >
               <span class="text-sm text-slate-400"
-                >Hız ve ivme, pist üzerinden anlatılmış; grafikli ve şekilli.</span
+                >LoL istatistikleri ve maç skorları üzerinden (Ali) · 36 sayfa</span
               >
               <span
                 class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
@@ -355,12 +356,12 @@
             </a>
 
             <a
-              href="https://app.tasvir.ai/c/9ac571a480afefadde8e70e6c9baee2be68c697f35979de3648c965b881068c7/1"
+              href="https://app.tasvir.ai/c/08c8948f9eaf1d4c321ebec75ad7aced7783fc6a84f8efa133ff23145f5919fb/1"
               target="_blank"
               rel="noopener"
               data-app-link
               data-cta="example"
-              data-example="ayt-matematik-turev"
+              data-example="tyt-matematik-sayi-basamaklari"
               class="group flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
@@ -369,7 +370,7 @@
                 aria-hidden="true"
               >
                 <img
-                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/9ac571a480afefadde8e70e6c9baee2be68c697f35979de3648c965b881068c7"
+                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/08c8948f9eaf1d4c321ebec75ad7aced7783fc6a84f8efa133ff23145f5919fb"
                   alt=""
                   width="420"
                   height="594"
@@ -381,12 +382,95 @@
               </span>
               <span
                 class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
-                >AYT Matematik</span
+                >TYT Matematik</span
               >
-              <span class="text-base font-semibold text-slate-100">Türev</span>
+              <span class="text-base font-semibold text-slate-100"
+                >Sayı Basamakları ve Bölünebilme</span
+              >
               <span class="text-sm text-slate-400"
-                >Anlık hız ve nabız değişimiyle kurulmuş anlatım, çözümlü
-                sorular.</span
+                >Bölünebilme kuralları büyü kuralları gibi (Elif) · 36 sayfa</span
+              >
+              <span
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                >Dokümanı aç &rarr;</span
+              >
+            </a>
+
+            <a
+              href="https://app.tasvir.ai/c/3f1d1ecd577477fab6446b7043280c1b16a4d0f2293aaa15fc2d50b981cfd4ff/1"
+              target="_blank"
+              rel="noopener"
+              data-app-link
+              data-cta="example"
+              data-example="tyt-matematik-ebob-ekok"
+              class="group flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+            >
+              <span
+                class="block w-full overflow-hidden rounded-xl border border-white/10 bg-[#0b0b12]"
+                style="aspect-ratio: 210 / 297"
+                aria-hidden="true"
+              >
+                <img
+                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/3f1d1ecd577477fab6446b7043280c1b16a4d0f2293aaa15fc2d50b981cfd4ff"
+                  alt=""
+                  width="420"
+                  height="594"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-contain"
+                  onerror="this.parentElement.style.display = 'none'"
+                />
+              </span>
+              <span
+                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                >TYT Matematik</span
+              >
+              <span class="text-base font-semibold text-slate-100"
+                >EBOB ve EKOK</span
+              >
+              <span class="text-sm text-slate-400"
+                >Kaynak yönetimi stratejisi olarak (Burak) · 33 sayfa</span
+              >
+              <span
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                >Dokümanı aç &rarr;</span
+              >
+            </a>
+
+            <a
+              href="https://app.tasvir.ai/c/4b85c40f1ad2f7ca835b9b3178dbe0f9a874b986453eb15bac9bb320c12aa895/1"
+              target="_blank"
+              rel="noopener"
+              data-app-link
+              data-cta="example"
+              data-example="tyt-geometri-acilar"
+              class="group flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+            >
+              <span
+                class="block w-full overflow-hidden rounded-xl border border-white/10 bg-[#0b0b12]"
+                style="aspect-ratio: 210 / 297"
+                aria-hidden="true"
+              >
+                <img
+                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/4b85c40f1ad2f7ca835b9b3178dbe0f9a874b986453eb15bac9bb320c12aa895"
+                  alt=""
+                  width="420"
+                  height="594"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-contain"
+                  onerror="this.parentElement.style.display = 'none'"
+                />
+              </span>
+              <span
+                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                >TYT Geometri</span
+              >
+              <span class="text-base font-semibold text-slate-100"
+                >Doğruda ve Üçgende Açılar</span
+              >
+              <span class="text-sm text-slate-400"
+                >Büyü asası hareketleri ve kale mimarisi (Elif) · 34 sayfa</span
               >
               <span
                 class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
@@ -427,7 +511,7 @@
                 >Üçgenler, Benzerlik ve Alan</span
               >
               <span class="text-sm text-slate-400"
-                >Her kuralın yanında bir çizim, teori okunabilir kalıyor.</span
+                >Pist virajı ve araç geometrisi üzerinden (Kaan) · 35 sayfa</span
               >
               <span
                 class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
@@ -436,12 +520,12 @@
             </a>
 
             <a
-              href="https://app.tasvir.ai/c/dbafa0c424844795c1a0dd49216f675a3882af9062d481d78ff168f366af6412/1"
+              href="https://app.tasvir.ai/c/9e59df98b9f512da0b2800fd55e8533a521dadd295c818d259eaafc2532b95cf/1"
               target="_blank"
               rel="noopener"
               data-app-link
               data-cta="example"
-              data-example="ayt-biyoloji-fizyoloji"
+              data-example="tyt-geometri-cokgenler"
               class="group flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
@@ -450,7 +534,7 @@
                 aria-hidden="true"
               >
                 <img
-                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/dbafa0c424844795c1a0dd49216f675a3882af9062d481d78ff168f366af6412"
+                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/9e59df98b9f512da0b2800fd55e8533a521dadd295c818d259eaafc2532b95cf"
                   alt=""
                   width="420"
                   height="594"
@@ -462,96 +546,13 @@
               </span>
               <span
                 class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
-                >AYT Biyoloji</span
+                >TYT Geometri</span
               >
               <span class="text-base font-semibold text-slate-100"
-                >İnsan Fizyolojisi</span
+                >Çokgenler ve Dörtgenler</span
               >
               <span class="text-sm text-slate-400"
-                >Sinir ve endokrin sistem, koşu sırasında vücutta olanlar
-                üzerinden.</span
-              >
-              <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
-                >Dokümanı aç &rarr;</span
-              >
-            </a>
-
-            <a
-              href="https://app.tasvir.ai/c/8e443781100f8df86f778c8d169d43e7a73ecf926a691c255066d3d868afc8bb/1"
-              target="_blank"
-              rel="noopener"
-              data-app-link
-              data-cta="example"
-              data-example="tyt-kimya-asit-baz"
-              class="group flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-            >
-              <span
-                class="block w-full overflow-hidden rounded-xl border border-white/10 bg-[#0b0b12]"
-                style="aspect-ratio: 210 / 297"
-                aria-hidden="true"
-              >
-                <img
-                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/8e443781100f8df86f778c8d169d43e7a73ecf926a691c255066d3d868afc8bb"
-                  alt=""
-                  width="420"
-                  height="594"
-                  loading="lazy"
-                  decoding="async"
-                  class="h-full w-full object-contain"
-                  onerror="this.parentElement.style.display = 'none'"
-                />
-              </span>
-              <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
-                >TYT Kimya</span
-              >
-              <span class="text-base font-semibold text-slate-100"
-                >Asitler, Bazlar ve Tuzlar</span
-              >
-              <span class="text-sm text-slate-400"
-                >pH ve nötrleşme, mide asidi ve ilaç örnekleriyle.</span
-              >
-              <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
-                >Dokümanı aç &rarr;</span
-              >
-            </a>
-
-            <a
-              href="https://app.tasvir.ai/c/990f2bc4a6949c60167115ea09c6da2a3d4adc3203a38bd097b76d067feb5862/1"
-              target="_blank"
-              rel="noopener"
-              data-app-link
-              data-cta="example"
-              data-example="ayt-matematik-trigonometri"
-              class="group flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-            >
-              <span
-                class="block w-full overflow-hidden rounded-xl border border-white/10 bg-[#0b0b12]"
-                style="aspect-ratio: 210 / 297"
-                aria-hidden="true"
-              >
-                <img
-                  src="https://srv.tasvir.ai/rest/tasvir-noauth/v1/store/previews/990f2bc4a6949c60167115ea09c6da2a3d4adc3203a38bd097b76d067feb5862"
-                  alt=""
-                  width="420"
-                  height="594"
-                  loading="lazy"
-                  decoding="async"
-                  class="h-full w-full object-contain"
-                  onerror="this.parentElement.style.display = 'none'"
-                />
-              </span>
-              <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
-                >AYT Matematik</span
-              >
-              <span class="text-base font-semibold text-slate-100"
-                >Trigonometri</span
-              >
-              <span class="text-sm text-slate-400"
-                >Birim çember ve açılar, viraj geometrisi benzetmesiyle.</span
+                >Blok yapıları ve yapı planları üzerinden (Emre) · 35 sayfa</span
               >
               <span
                 class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"

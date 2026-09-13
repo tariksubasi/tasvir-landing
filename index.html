@@ -16,6 +16,46 @@
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0b0b12" />
 
+    <!--
+      Turkish-first for a Turkish visitor. GitHub Pages cannot see the visitor's
+      country, so the browser's top language is the signal, and this runs in
+      <head> so the English page never flashes first. Googlebot crawls (and
+      renders) with en-US, so the English URL stays reachable and indexable.
+      An explicit choice wins: the EN link on /tr/ carries ?lang=en, which is
+      remembered here so nobody is bounced back to Turkish twice.
+    -->
+    <script>
+      (function () {
+        var KEY = "tasvir:lang-pref";
+        var store = null;
+        try {
+          store = window.localStorage;
+        } catch (e) {}
+
+        if (new URLSearchParams(window.location.search).get("lang") === "en") {
+          try {
+            store && store.setItem(KEY, "en");
+          } catch (e) {}
+          return;
+        }
+
+        try {
+          if (store && store.getItem(KEY) === "en") return;
+        } catch (e) {}
+
+        // Only the top preference counts: a visitor whose first language is
+        // English stays here even if Turkish is further down the list.
+        var primary = String(
+          (navigator.languages && navigator.languages[0]) ||
+            navigator.language ||
+            ""
+        ).toLowerCase();
+        if (primary.indexOf("tr") === 0) {
+          window.location.replace("/tr/" + window.location.search);
+        }
+      })();
+    </script>
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Tasvir" />
@@ -163,49 +203,6 @@
 
   <body class="min-h-screen bg-[#0b0b12] font-sans text-slate-100 antialiased">
     <div class="flex min-h-screen flex-col">
-      <!--
-        Turkish hint, not a redirect: this page has to stay the English page for
-        every crawler (Googlebot requests it from the US), so the Turkish URL is
-        only offered. Hidden until the script sees a Turkish browser locale, and
-        the outer element carries no display utility so [hidden] still wins.
-      -->
-      <div
-        id="lang-hint"
-        lang="tr"
-        hidden
-        class="w-full border-b border-brand/30 bg-brand/10"
-      >
-        <div
-          class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-2 text-center text-sm text-slate-200 sm:px-6"
-        >
-          <span>Türkçe sayfa: TYT/AYT konu anlatımı ve 83 hazır doküman.</span>
-          <a
-            href="/tr/"
-            hreflang="tr"
-            data-cta="lang-hint"
-            class="inline-flex h-11 items-center font-semibold text-brand-light underline decoration-brand-light/40 underline-offset-4 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-            >Türkçe'ye geç</a
-          >
-          <button
-            type="button"
-            id="lang-hint-close"
-            aria-label="Bu bildirimi kapat"
-            class="inline-flex h-11 w-11 items-center justify-center rounded-full text-slate-400 transition hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              aria-hidden="true"
-              class="h-4 w-4"
-            >
-              <path d="M18 6 6 18M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
       <!-- Header -->
       <header class="w-full border-b border-white/5">
         <nav
@@ -1028,50 +1025,8 @@
         var yearEl = document.getElementById("year");
         if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-        // Offer the Turkish page to a Turkish browser instead of redirecting:
-        // a locale redirect would also move Googlebot off the English URL, and
-        // a visitor who prefers this page must be able to stay on it.
-        var langHint = document.getElementById("lang-hint");
-        if (langHint) {
-          var DISMISS_KEY = "tasvir:lang-hint-dismissed";
-          // Only the top preference counts: a visitor whose first language is
-          // English gets no Turkish interruption even if tr is further down.
-          var primaryLang = String(
-            (navigator.languages && navigator.languages[0]) ||
-              navigator.language ||
-              ""
-          ).toLowerCase();
-          var prefersTurkish = primaryLang.indexOf("tr") === 0;
-          var dismissed = false;
-          try {
-            dismissed = window.localStorage.getItem(DISMISS_KEY) === "1";
-          } catch (e) {}
-
-          if (prefersTurkish && !dismissed) {
-            langHint.hidden = false;
-            track("lang_hint_shown", { target: "tr" });
-          }
-
-          var closeButton = document.getElementById("lang-hint-close");
-          if (closeButton) {
-            closeButton.addEventListener("click", function () {
-              langHint.hidden = true;
-              try {
-                window.localStorage.setItem(DISMISS_KEY, "1");
-              } catch (e) {}
-            });
-          }
-
-          var hintLink = langHint.querySelector("a[href='/tr/']");
-          if (hintLink) {
-            hintLink.addEventListener("click", function () {
-              track("lang_hint_clicked", { target: "tr" });
-            });
-          }
-        }
-
-        // English-first regardless of browser locale; Turkish visitors get their
-        // own page at /tr/ rather than a translated copy of this one.
+        // English-first regardless of browser locale; Turkish visitors are sent
+        // to /tr/ by the head script rather than shown a translated copy here.
         applyLang("en");
         track("landing_view", { lang: currentLang });
       })();
