@@ -7,7 +7,7 @@
     <title>Tasvir — Turn any PDF or topic into a visual study document</title>
     <meta
       name="description"
-      content="Upload your lecture notes or type what you're studying. Tasvir writes an illustrated, printable document of up to 50 pages — AI study guide, textbook, report and kids' book generator. First document free."
+      content="Upload your lecture notes or type what you're studying. Tasvir writes an illustrated, printable document of up to 50 pages — AI study guide, textbook, report and kids' book generator. 300 free credits on signup."
     />
     <link rel="canonical" href="https://tasvir.ai/" />
     <link rel="alternate" hreflang="en" href="https://tasvir.ai/" />
@@ -28,6 +28,8 @@
       content="Upload your lecture notes or type a topic. Get an illustrated, printable document of up to 50 pages you can read, edit, print and share."
     />
     <meta property="og:url" content="https://tasvir.ai/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="tr_TR" />
     <meta
       property="og:image"
       content="https://i.ytimg.com/vi/tZgCnnuzCYA/maxresdefault.jpg"
@@ -104,7 +106,7 @@
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD",
-          "description": "First document free, then credit packs."
+          "description": "300 free credits on signup — about five pages — then credit packs with no subscription."
         }
       }
     </script>
@@ -114,6 +116,14 @@
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What do I get for free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Every new account gets 300 credits once, which funds about five pages at balanced quality with AI images. They stay valid for 30 days and no card is required. When they run out you buy a credit pack — there is no subscription."
+            }
+          },
           {
             "@type": "Question",
             "name": "Do you store the file I upload?",
@@ -153,6 +163,49 @@
 
   <body class="min-h-screen bg-[#0b0b12] font-sans text-slate-100 antialiased">
     <div class="flex min-h-screen flex-col">
+      <!--
+        Turkish hint, not a redirect: this page has to stay the English page for
+        every crawler (Googlebot requests it from the US), so the Turkish URL is
+        only offered. Hidden until the script sees a Turkish browser locale, and
+        the outer element carries no display utility so [hidden] still wins.
+      -->
+      <div
+        id="lang-hint"
+        lang="tr"
+        hidden
+        class="w-full border-b border-brand/30 bg-brand/10"
+      >
+        <div
+          class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-2 text-center text-sm text-slate-200 sm:px-6"
+        >
+          <span>Türkçe sayfa: TYT/AYT konu anlatımı ve 83 hazır doküman.</span>
+          <a
+            href="/tr/"
+            hreflang="tr"
+            data-cta="lang-hint"
+            class="inline-flex h-11 items-center font-semibold text-brand-light underline decoration-brand-light/40 underline-offset-4 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+            >Türkçe'ye geç</a
+          >
+          <button
+            type="button"
+            id="lang-hint-close"
+            aria-label="Bu bildirimi kapat"
+            class="inline-flex h-11 w-11 items-center justify-center rounded-full text-slate-400 transition hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+              class="h-4 w-4"
+            >
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
       <!-- Header -->
       <header class="w-full border-b border-white/5">
         <nav
@@ -267,7 +320,7 @@
               Create your first document — free
             </a>
             <p class="text-sm text-slate-400" data-i18n="ctaNote">
-              Your first document is free · No credit card · Any language
+              300 free credits on signup · No credit card · Any language
             </p>
           </div>
         </div>
@@ -616,10 +669,10 @@
             Start free. Then pay only for what you generate.
           </h2>
           <p class="mx-auto mt-3 max-w-xl text-slate-300" data-i18n="pricingBody">
-            Your first document is on us. After that you buy credits — no
-            subscription lock-in, no monthly fee for a month you did not study.
-            Credits are only spent when you generate a document or regenerate a
-            page.
+            You start with 300 credits — about five pages, enough for a complete
+            first document. After that you buy credits: no subscription
+            lock-in, no monthly fee for a month you did not study. Credits are
+            only spent when you generate a document or regenerate a page.
           </p>
           <a
             href="https://app.tasvir.ai/signup"
@@ -643,6 +696,29 @@
             Before you sign up
           </h2>
           <div class="mt-8 flex flex-col gap-3">
+            <details class="group rounded-2xl border border-white/10 bg-white/[0.03] px-5">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+              >
+                <span data-i18n="faq0Q">What do I get for free?</span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                  class="h-5 w-5 shrink-0 text-brand-light transition-transform group-open:rotate-180"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </summary>
+              <p class="pb-4 text-sm text-slate-300" data-i18n="faq0A">
+                300 credits, once, when you create your account — about five
+                pages at balanced quality with AI images, valid for 30 days and
+                no card required. When they run out you buy a credit pack;
+                there is no subscription.
+              </p>
+            </details>
             <details class="group rounded-2xl border border-white/10 bg-white/[0.03] px-5">
               <summary
                 class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
@@ -802,7 +878,7 @@
             htmlLang: "en",
             title: "Tasvir — Turn any PDF or topic into a visual study document",
             description:
-              "Upload your lecture notes or type what you're studying. Tasvir writes an illustrated, printable document of up to 50 pages — AI study guide, textbook, report and kids' book generator. First document free.",
+              "Upload your lecture notes or type what you're studying. Tasvir writes an illustrated, printable document of up to 50 pages — AI study guide, textbook, report and kids' book generator. 300 free credits on signup.",
             signIn: "Sign in",
             signUp: "Start free",
             heroTitle: "Turn any PDF or topic into a visual study document.",
@@ -810,7 +886,7 @@
               "Upload your lecture notes or type what you're studying. Tasvir writes up to 50 illustrated pages you can read, edit and print.",
             videoPlay: "Watch the 90s demo",
             cta: "Create your first document — free",
-            ctaNote: "Your first document is free · No credit card · Any language",
+            ctaNote: "300 free credits on signup · No credit card · Any language",
             howTitle: "Three steps, about five minutes",
             how1Title: "Drop a PDF or type a topic",
             how1Body:
@@ -839,9 +915,12 @@
             examplesMore: "See all examples \u2192",
             pricingTitle: "Start free. Then pay only for what you generate.",
             pricingBody:
-              "Your first document is on us. After that you buy credits — no subscription lock-in, no monthly fee for a month you did not study. Credits are only spent when you generate a document or regenerate a page.",
+              "You start with 300 credits — about five pages, enough for a complete first document. After that you buy credits: no subscription lock-in, no monthly fee for a month you did not study. Credits are only spent when you generate a document or regenerate a page.",
             pricingCta: "See credits and start free",
             faqTitle: "Before you sign up",
+            faq0Q: "What do I get for free?",
+            faq0A:
+              "300 credits, once, when you create your account — about five pages at balanced quality with AI images, valid for 30 days and no card required. When they run out you buy a credit pack; there is no subscription.",
             faq1Q: "Do you store the file I upload?",
             faq1A:
               "No. Tasvir reads your PDF, Word file or image once to understand it, uses it for that single generation, and does not store it.",
@@ -948,6 +1027,48 @@
 
         var yearEl = document.getElementById("year");
         if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+        // Offer the Turkish page to a Turkish browser instead of redirecting:
+        // a locale redirect would also move Googlebot off the English URL, and
+        // a visitor who prefers this page must be able to stay on it.
+        var langHint = document.getElementById("lang-hint");
+        if (langHint) {
+          var DISMISS_KEY = "tasvir:lang-hint-dismissed";
+          // Only the top preference counts: a visitor whose first language is
+          // English gets no Turkish interruption even if tr is further down.
+          var primaryLang = String(
+            (navigator.languages && navigator.languages[0]) ||
+              navigator.language ||
+              ""
+          ).toLowerCase();
+          var prefersTurkish = primaryLang.indexOf("tr") === 0;
+          var dismissed = false;
+          try {
+            dismissed = window.localStorage.getItem(DISMISS_KEY) === "1";
+          } catch (e) {}
+
+          if (prefersTurkish && !dismissed) {
+            langHint.hidden = false;
+            track("lang_hint_shown", { target: "tr" });
+          }
+
+          var closeButton = document.getElementById("lang-hint-close");
+          if (closeButton) {
+            closeButton.addEventListener("click", function () {
+              langHint.hidden = true;
+              try {
+                window.localStorage.setItem(DISMISS_KEY, "1");
+              } catch (e) {}
+            });
+          }
+
+          var hintLink = langHint.querySelector("a[href='/tr/']");
+          if (hintLink) {
+            hintLink.addEventListener("click", function () {
+              track("lang_hint_clicked", { target: "tr" });
+            });
+          }
+        }
 
         // English-first regardless of browser locale; Turkish visitors get their
         // own page at /tr/ rather than a translated copy of this one.
