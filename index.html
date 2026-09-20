@@ -27,12 +27,12 @@
     <meta name="theme-color" content="#ffffff" />
 
     <!--
-      Turkish-first for a Turkish visitor. GitHub Pages cannot see the visitor's
-      country, so the browser's top language is the signal, and this runs in
-      <head> so the English page never flashes first. Googlebot crawls (and
-      renders) with en-US, so the English URL stays reachable and indexable.
-      An explicit choice wins: the EN link on /tr/ carries ?lang=en, which is
-      remembered here so nobody is bounced back to Turkish twice.
+      Turkish-first for a visitor in Turkey. GitHub Pages cannot see IP country,
+      so the signals are Europe/Istanbul (same check as the app) and a Turkish
+      top language. This runs in <head> so the English page never flashes.
+      Googlebot crawls with en-US / a non-Istanbul timezone, so the English URL
+      stays reachable. An explicit choice wins: the EN link on /tr/ carries
+      ?lang=en, which is remembered so nobody is bounced back to Turkish twice.
     -->
     <script>
       (function () {
@@ -53,14 +53,21 @@
           if (store && store.getItem(KEY) === "en") return;
         } catch (e) {}
 
-        // Only the top preference counts: a visitor whose first language is
-        // English stays here even if Turkish is further down the list.
+        var tz = "";
+        try {
+          tz = String(Intl.DateTimeFormat().resolvedOptions().timeZone || "");
+        } catch (e) {}
+        var inTurkey =
+          tz === "Europe/Istanbul" || tz === "Asia/Istanbul" || tz === "Turkey";
+
         var primary = String(
           (navigator.languages && navigator.languages[0]) ||
             navigator.language ||
             ""
         ).toLowerCase();
-        if (primary.indexOf("tr") === 0) {
+        var turkishLang = primary === "tr" || primary.indexOf("tr-") === 0;
+
+        if (inTurkey || turkishLang) {
           window.location.replace("/tr/" + window.location.search);
         }
       })();
