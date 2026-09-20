@@ -1,3 +1,125 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*
+  Tokens match react-web lightAppColors / darkAppColors so the marketing
+  site and the product share the same surfaces. Light is the default:
+  html.dark is added only after an explicit choice.
+*/
+:root {
+  color-scheme: light;
+  --c-bg: #ffffff;
+  --c-bg-alt: #f0f4f9;
+  --c-elevated: #ffffff;
+  --c-soft: #e8eaed;
+  --c-ink: #1f1f1f;
+  --c-muted: #5f6368;
+  --c-line: rgba(31, 31, 31, 0.08);
+  --c-preview: #e8eaed;
+  --c-brand: #5865f2;
+  --c-brand-dark: #4752c4;
+  --c-brand-fg: #4752c4;
+  --c-brand-soft: #e3e5fc;
+  --shadow-card: 0 4px 18px -8px rgba(31, 31, 31, 0.16);
+  --shadow-lift: 0 12px 32px -16px rgba(31, 31, 31, 0.22);
+}
+
+html.dark {
+  color-scheme: dark;
+  --c-bg: #1e1f20;
+  --c-bg-alt: #131314;
+  --c-elevated: #282a2c;
+  --c-soft: #333537;
+  --c-ink: #e3e3e3;
+  --c-muted: #9aa0a6;
+  --c-line: rgba(255, 255, 255, 0.08);
+  --c-preview: #131314;
+  --c-brand: #5865f2;
+  --c-brand-dark: #4752c4;
+  --c-brand-fg: #a5b4fc;
+  --c-brand-soft: #2d3748;
+  --shadow-card: 0 8px 24px -12px rgba(0, 0, 0, 0.45);
+  --shadow-lift: 0 16px 40px -16px rgba(0, 0, 0, 0.55);
+}
+
+@layer base {
+  html {
+    overflow-x: clip;
+    scroll-padding-top: calc(4.75rem + env(safe-area-inset-top));
+  }
+
+  body {
+    background-color: var(--c-bg);
+    color: var(--c-ink);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .video-stage {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: min(42svh, 22rem);
+    max-width: min(100%, calc(min(42svh, 22rem) * 16 / 9));
+  }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    .video-stage {
+      max-height: min(38svh, 14rem);
+      max-width: min(100%, calc(min(38svh, 14rem) * 16 / 9));
+    }
+
+    .hero-stack {
+      gap: 0.75rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+  }
+
+  .doc-preview {
+    aspect-ratio: 210 / 297;
+    max-height: 13.5rem;
+    background-color: var(--c-preview);
+  }
+
+  @media (min-width: 640px) {
+    .doc-preview {
+      max-height: 20rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .doc-preview {
+      max-height: 24rem;
+    }
+  }
+
+  .example-track {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .example-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  html.dark .theme-moon {
+    display: none;
+  }
+
+  .theme-sun {
+    display: none;
+  }
+
+  html.dark .theme-sun {
+    display: block;
+  }
+}

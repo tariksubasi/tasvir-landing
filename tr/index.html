@@ -2,7 +2,17 @@
 <html lang="tr" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("tasvir:theme") === "dark") {
+            document.documentElement.classList.add("dark");
+            document.documentElement.style.colorScheme = "dark";
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
 
     <title>Tasvir — Tek cümleyle görselli, yazdırılabilir doküman üret</title>
     <meta
@@ -14,7 +24,7 @@
     <link rel="alternate" hreflang="en" href="https://tasvir.ai/" />
     <link rel="alternate" hreflang="x-default" href="https://tasvir.ai/" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0b0b12" />
+    <meta name="theme-color" content="#ffffff" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -151,14 +161,14 @@
     </script>
   </head>
 
-  <body class="min-h-[100svh] bg-[#0b0b12] font-sans text-slate-100 antialiased">
+  <body class="min-h-[100svh] bg-page font-sans text-ink antialiased">
     <div class="flex min-h-[100svh] flex-col">
       <!-- Header -->
-      <header class="w-full border-b border-white/5">
+      <header class="sticky top-0 z-20 w-full border-b border-line bg-page/90 pt-[env(safe-area-inset-top)] backdrop-blur-md">
         <nav
-          class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6"
+          class="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:gap-4 sm:px-6"
         >
-          <a href="/tr/" class="flex items-center gap-2" aria-label="Tasvir ana sayfa">
+          <a href="/tr/" class="flex min-h-11 items-center gap-2" aria-label="Tasvir ana sayfa">
             <img
               src="../icon.svg"
               alt="Tasvir logosu"
@@ -166,10 +176,26 @@
               height="32"
               class="h-8 w-8 rounded-lg"
             />
-            <span class="text-lg font-bold tracking-tight">Tasvir</span>
+            <span class="hidden text-lg font-bold tracking-tight min-[400px]:inline">Tasvir</span>
           </a>
 
-          <div class="flex items-center gap-2 sm:gap-3">
+          <div class="flex items-center gap-1.5 sm:gap-3">
+            <button
+              type="button"
+              data-theme-toggle
+              data-label-dark="Koyu görünüme geç"
+              data-label-light="Açık görünüme geç"
+              aria-pressed="false"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-elevated text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+            >
+              <svg class="theme-moon h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M21 14.3A8.5 8.5 0 0 1 9.7 3 7 7 0 1 0 21 14.3z" />
+              </svg>
+              <svg class="theme-sun h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+              </svg>
+            </button>
             <!--
               A real anchor rather than a JS toggle, and ?lang=en on purpose:
               the English page redirects a Turkish browser here, so without an
@@ -179,23 +205,25 @@
             <a
               href="/?lang=en"
               hreflang="en"
-              class="inline-flex h-11 items-center rounded-full border border-white/15 px-3.5 text-sm font-medium text-slate-200 transition hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="inline-flex h-11 min-w-11 items-center justify-center rounded-full border border-line bg-elevated px-3 text-sm font-medium text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
               >EN</a
             >
             <a
               href="https://app.tasvir.ai/signin"
               data-app-link
               data-cta="header-signin"
-              class="hidden h-11 items-center rounded-full px-4 text-sm font-medium text-slate-200 transition hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:inline-flex"
+              class="hidden h-11 items-center rounded-full px-4 text-sm font-medium text-ink transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:inline-flex"
               >Giriş yap</a
             >
             <a
               href="https://app.tasvir.ai/signup"
               data-app-link
               data-cta="header"
-              class="inline-flex h-11 items-center rounded-full bg-brand px-4 text-sm font-semibold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-              >Ücretsiz başla</a
+              class="inline-flex h-11 items-center rounded-full bg-brand px-3 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:px-4"
             >
+              <span class="sm:hidden">Başla</span>
+              <span class="hidden sm:inline">Ücretsiz başla</span>
+            </a>
           </div>
         </nav>
       </header>
@@ -203,14 +231,14 @@
       <!-- Hero -->
       <main class="w-full">
         <div
-          class="mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 py-8 text-center sm:px-6 sm:py-12"
+          class="hero-stack mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 py-8 text-center sm:px-6 sm:py-12"
         >
           <h1
             class="max-w-3xl text-[clamp(1.75rem,1.1rem_+_3.2vw,3rem)] font-extrabold leading-tight tracking-tight"
           >
             Bir cümle yaz, dokümanın çizimleriyle gelsin.
           </h1>
-          <p class="max-w-xl text-base text-slate-300 sm:text-lg">
+          <p class="max-w-xl text-base text-muted sm:text-lg">
             Çocuğuna çizgi roman, sınavına konu anlatımı, işine rapor — ne
             istediğini söylemen yeterli. Yapay zekâ konuyu planlıyor, sayfa
             sayfa yazıyor, şekillerini ve grafiklerini çiziyor; tarayıcın da
@@ -226,17 +254,17 @@
             aria-label="Örnek istemler"
           >
             <li
-              class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300"
+              class="rounded-full border border-line bg-elevated px-3 py-1.5 text-xs text-muted shadow-card sm:text-sm"
             >
               "TYT üçgenler, futbol örnekleriyle"
             </li>
             <li
-              class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300"
+              class="rounded-full border border-line bg-elevated px-3 py-1.5 text-xs text-muted shadow-card sm:text-sm"
             >
               "7 yaşındaki kızıma uzay temalı çizgi roman"
             </li>
             <li
-              class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300"
+              class="rounded-full border border-line bg-elevated px-3 py-1.5 text-xs text-muted shadow-card sm:text-sm"
             >
               "Şirketimin çeyrek raporunu dergi gibi tasarla"
             </li>
@@ -244,7 +272,7 @@
 
           <div
             id="video-frame"
-            class="relative mx-auto aspect-video w-full max-w-[calc(42vh*16/9)] overflow-hidden rounded-2xl border border-white/15 bg-black shadow-2xl shadow-black/50"
+            class="video-stage relative mx-auto overflow-hidden rounded-2xl bg-preview shadow-lift"
           >
             <button
               type="button"
@@ -262,7 +290,7 @@
                 class="absolute inset-0 h-full w-full object-cover opacity-70 transition group-hover:opacity-100"
               />
               <span
-                class="relative inline-flex items-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-semibold text-white shadow-2xl shadow-black/50 transition group-hover:bg-brand-dark sm:text-base"
+                class="relative inline-flex h-11 min-w-11 items-center gap-2 rounded-full bg-brand px-3 text-sm font-semibold text-white shadow-card transition group-hover:bg-brand-dark sm:h-auto sm:px-5 sm:py-3 sm:text-base"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -272,7 +300,7 @@
                 >
                   <path d="M8 5v14l11-7z" />
                 </svg>
-                <span>90 saniyelik demoyu izle</span>
+                <span class="hidden min-[420px]:inline">90 saniyelik demoyu izle</span>
               </span>
             </button>
           </div>
@@ -282,11 +310,11 @@
               href="https://app.tasvir.ai/signup"
               data-app-link
               data-cta="hero"
-              class="inline-flex h-14 items-center justify-center rounded-full bg-brand px-8 text-base font-semibold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b12]"
+              class="inline-flex h-12 w-full max-w-sm items-center justify-center rounded-full bg-brand px-6 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-page sm:h-14 sm:w-auto sm:px-8 sm:text-base"
             >
               İlk dokümanını ücretsiz oluştur
             </a>
-            <p class="text-sm text-slate-400">
+            <p class="text-sm text-muted">
               Kayıt olunca 300 kredi hediye · Kart gerekmez · Her dilde
             </p>
           </div>
@@ -300,23 +328,23 @@
         işi, klavyeyle de dolaşılabiliyor.
       -->
       <!-- Real examples -->
-      <section class="w-full border-t border-white/5 bg-black/20">
+      <section class="w-full border-t border-line bg-alt">
         <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
           <div class="mx-auto mb-8 max-w-2xl text-center">
             <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">
               Aynı motor, bambaşka dokümanlar
             </h2>
-            <p class="mt-3 text-slate-300">
-              Hepsi tek bir cümleden üretildi. Kayıt gerekmiyor: kaydır, birine
-              tıkla, sonuna kadar oku.
+            <p class="mt-3 text-muted">
+              Hepsi tek bir cümleden üretildi. Kayıt gerekmiyor: birine tıkla,
+              sonuna kadar oku.
             </p>
           </div>
 
           <div
             role="region"
-            aria-label="Örnek dokümanlar, yatay liste"
+            aria-label="Örnek dokümanlar"
             tabindex="0"
-            class="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+            class="example-track flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0"
           >
             <a
               href="https://app.tasvir.ai/c/f57dd28dc31cbef57bfe584d5724af0a7689d9bcc99d39826c9b815c529edad8/1"
@@ -325,10 +353,10 @@
               data-app-link
               data-cta="example"
               data-example="tyt-geometri-ucgenler"
-              class="group flex w-[248px] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-4 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px]"
+              class="group flex w-[min(248px,calc(100vw-2.5rem))] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-line bg-elevated p-4 text-left shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px] lg:w-auto lg:max-w-none lg:shrink"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -344,17 +372,17 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 >Sınav hazırlığı</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >Üçgenler, Benzerlik ve Alan</span
               >
-              <span class="text-sm text-slate-400"
+              <span class="text-sm text-muted"
                 >Pist virajları ve araç geometrisi üzerinden · 35 sayfa</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 >Dokümanı aç &rarr;</span
               >
             </a>
@@ -366,10 +394,10 @@
               data-app-link
               data-cta="example"
               data-example="matrix-evreni"
-              class="group flex w-[248px] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-4 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px]"
+              class="group flex w-[min(248px,calc(100vw-2.5rem))] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-line bg-elevated p-4 text-left shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px] lg:w-auto lg:max-w-none lg:shrink"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -385,17 +413,17 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 >Film</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >Matrix Evreni Rehberi</span
               >
-              <span class="text-sm text-slate-400"
+              <span class="text-sm text-muted"
                 >Zaman çizelgesi, karakter kartları, karar diyagramı · 28 sayfa</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 >Dokümanı aç &rarr;</span
               >
             </a>
@@ -407,10 +435,10 @@
               data-app-link
               data-cta="example"
               data-example="roma-imparatorlugu"
-              class="group flex w-[248px] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-4 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px]"
+              class="group flex w-[min(248px,calc(100vw-2.5rem))] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-line bg-elevated p-4 text-left shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px] lg:w-auto lg:max-w-none lg:shrink"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -426,17 +454,17 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 >Tarih</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >Roma İmparatorluğu</span
               >
-              <span class="text-sm text-slate-400"
+              <span class="text-sm text-muted"
                 >Zaman çizelgeleri, haritalar, dönem kartları · 32 sayfa</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 >Dokümanı aç &rarr;</span
               >
             </a>
@@ -448,10 +476,10 @@
               data-app-link
               data-cta="example"
               data-example="fenerbahce-tarihi"
-              class="group flex w-[248px] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-4 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px]"
+              class="group flex w-[min(248px,calc(100vw-2.5rem))] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-line bg-elevated p-4 text-left shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px] lg:w-auto lg:max-w-none lg:shrink"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -467,17 +495,17 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 >Spor</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >Fenerbahçe 1907-2027</span
               >
-              <span class="text-sm text-slate-400"
+              <span class="text-sm text-muted"
                 >120 yıllık kulüp tarihi, dönem dönem istatistikler · 30 sayfa</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 >Dokümanı aç &rarr;</span
               >
             </a>
@@ -489,10 +517,10 @@
               data-app-link
               data-cta="example"
               data-example="30-gunde-ingilizce"
-              class="group flex w-[248px] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-4 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px]"
+              class="group flex w-[min(248px,calc(100vw-2.5rem))] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-line bg-elevated p-4 text-left shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px] lg:w-auto lg:max-w-none lg:shrink"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -508,17 +536,17 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 >Dil öğrenme</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >30 Günde Temel İngilizce</span
               >
-              <span class="text-sm text-slate-400"
+              <span class="text-sm text-muted"
                 >Günlük ders planı, diyaloglar, alıştırmalar · 43 sayfa</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 >Dokümanı aç &rarr;</span
               >
             </a>
@@ -530,10 +558,10 @@
               data-app-link
               data-cta="example"
               data-example="yenidogan-rehberi"
-              class="group flex w-[248px] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-4 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px]"
+              class="group flex w-[min(248px,calc(100vw-2.5rem))] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-line bg-elevated p-4 text-left shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px] lg:w-auto lg:max-w-none lg:shrink"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -549,17 +577,17 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 >Ebeveynlik</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >Yenidoğan İlk Yıl Rehberi</span
               >
-              <span class="text-sm text-slate-400"
+              <span class="text-sm text-muted"
                 >Ay ay gelişim, beslenme ve uyku tabloları · 30 sayfa</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 >Dokümanı aç &rarr;</span
               >
             </a>
@@ -571,10 +599,10 @@
               data-app-link
               data-cta="example"
               data-example="tyt-matematik-temel-kavramlar"
-              class="group flex w-[248px] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-4 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px]"
+              class="group flex w-[min(248px,calc(100vw-2.5rem))] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-line bg-elevated p-4 text-left shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px] lg:w-auto lg:max-w-none lg:shrink"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -590,17 +618,17 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 >Sınav hazırlığı</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >Temel Kavramlar</span
               >
-              <span class="text-sm text-slate-400"
+              <span class="text-sm text-muted"
                 >LoL istatistikleri ve maç skorları üzerinden · 36 sayfa</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 >Dokümanı aç &rarr;</span
               >
             </a>
@@ -612,10 +640,10 @@
               data-app-link
               data-cta="example"
               data-example="tarkan-diskografi"
-              class="group flex w-[248px] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-4 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px]"
+              class="group flex w-[min(248px,calc(100vw-2.5rem))] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-line bg-elevated p-4 text-left shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px] lg:w-auto lg:max-w-none lg:shrink"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -631,17 +659,17 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 >Müzik</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >Tarkan Diskografisi</span
               >
-              <span class="text-sm text-slate-400"
+              <span class="text-sm text-muted"
                 >Albüm kartları, satış grafiği, konser haritası · 23 sayfa</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 >Dokümanı aç &rarr;</span
               >
             </a>
@@ -653,10 +681,10 @@
               data-app-link
               data-cta="example"
               data-example="half-life-evreni"
-              class="group flex w-[248px] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-4 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px]"
+              class="group flex w-[min(248px,calc(100vw-2.5rem))] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-line bg-elevated p-4 text-left shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px] lg:w-auto lg:max-w-none lg:shrink"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -672,17 +700,17 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 >Oyun</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >Half-Life: Evren ve Hikâye</span
               >
-              <span class="text-sm text-slate-400"
+              <span class="text-sm text-muted"
                 >Seri kronolojisi, karakterler, dünya haritası · 23 sayfa</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 >Dokümanı aç &rarr;</span
               >
             </a>
@@ -694,10 +722,10 @@
               data-app-link
               data-cta="example"
               data-example="test-moda-kuresellesme"
-              class="group flex w-[248px] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-4 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px]"
+              class="group flex w-[min(248px,calc(100vw-2.5rem))] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-line bg-elevated p-4 text-left shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px] lg:w-auto lg:max-w-none lg:shrink"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -713,17 +741,17 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 >Şıklı test</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >Moda ve Sosyal Medyada Küreselleşme</span
               >
-              <span class="text-sm text-slate-400"
+              <span class="text-sm text-muted"
                 >Şıklı sorular, cevap anahtarı sonda · 6 sayfa</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 >Testi aç &rarr;</span
               >
             </a>
@@ -735,10 +763,10 @@
               data-app-link
               data-cta="example"
               data-example="instagram-sayfa-tasarimi"
-              class="group flex w-[248px] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-4 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px]"
+              class="group flex w-[min(248px,calc(100vw-2.5rem))] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-line bg-elevated p-4 text-left shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px] lg:w-auto lg:max-w-none lg:shrink"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -754,17 +782,17 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 >Arayüz tasarımı</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >Instagram Sayfa Tasarımı</span
               >
-              <span class="text-sm text-slate-400"
+              <span class="text-sm text-muted"
                 >Altı ekranlık arayüz akışı, bileşen bileşen · 5 sayfa</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 >Dokümanı aç &rarr;</span
               >
             </a>
@@ -776,10 +804,10 @@
               data-app-link
               data-cta="example"
               data-example="ielts-hazirlik"
-              class="group flex w-[248px] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-4 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px]"
+              class="group flex w-[min(248px,calc(100vw-2.5rem))] shrink-0 snap-start flex-col gap-2.5 rounded-2xl border border-line bg-elevated p-4 text-left shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-[264px] lg:w-auto lg:max-w-none lg:shrink"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -795,23 +823,23 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 >Dil sınavı</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >IELTS Sınav Hazırlık Rehberi</span
               >
-              <span class="text-sm text-slate-400"
+              <span class="text-sm text-muted"
                 >Bölüm bölüm strateji, örnek görevler, puanlama · 30 sayfa</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 >Dokümanı aç &rarr;</span
               >
             </a>
           </div>
 
-          <p class="mt-2 text-center text-sm text-slate-400 sm:hidden">
+          <p class="mt-2 text-center text-sm text-muted lg:hidden">
             Kartları yana kaydır
           </p>
 
@@ -820,14 +848,14 @@
           >
             <a
               href="/tr/yks/"
-              class="inline-flex h-11 items-center gap-1 rounded-full px-4 text-sm font-medium text-slate-300 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="inline-flex h-11 items-center gap-1 rounded-full px-4 text-sm font-medium text-muted transition hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
               >Sınava hazırlanıyorsan: 127 TYT/AYT dokümanı &rarr;</a
             >
             <a
               href="https://github.com/Tasvir-app/Tasvir-TR"
               target="_blank"
               rel="noopener"
-              class="inline-flex h-11 items-center gap-1 rounded-full px-4 text-sm font-medium text-slate-300 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="inline-flex h-11 items-center gap-1 rounded-full px-4 text-sm font-medium text-muted transition hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
               >Tüm örnekler ve istemleri (GitHub) &rarr;</a
             >
           </div>
@@ -835,32 +863,32 @@
       </section>
 
       <!-- How it works -->
-      <section class="w-full border-t border-white/5 bg-black/20">
+      <section class="w-full border-t border-line bg-alt">
         <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-14">
           <h2 class="text-center text-2xl font-bold tracking-tight sm:text-3xl">
             Yukarıdakilerin hepsini böyle ürettik — sen de üretebilirsin
           </h2>
-          <p class="mx-auto mt-3 max-w-2xl text-center text-slate-300">
+          <p class="mx-auto mt-3 max-w-2xl text-center text-muted">
             Sihir yok, dört adım var. Tek yazdığın şey ilk adımdaki cümle.
           </p>
           <ol class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <li class="rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left">
-              <span class="text-sm font-semibold text-brand-light">01</span>
-              <p class="mt-2 text-base font-semibold text-slate-100">
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-5 text-left">
+              <span class="text-sm font-semibold text-brand-fg">01</span>
+              <p class="mt-2 text-base font-semibold text-ink">
                 Konuyu söylüyorsun
               </p>
-              <p class="mt-1.5 text-sm text-slate-300">
+              <p class="mt-1.5 text-sm text-muted">
                 "TYT üçgenler, futbol örnekleriyle" ya da "kızıma uzay temalı
                 çizgi roman" gibi bir cümle yeterli. Ders notunu, PDF'ini, Word
                 dosyanı ya da tahta fotoğrafını da yükleyebilirsin.
               </p>
             </li>
-            <li class="rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left">
-              <span class="text-sm font-semibold text-brand-light">02</span>
-              <p class="mt-2 text-base font-semibold text-slate-100">
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-5 text-left">
+              <span class="text-sm font-semibold text-brand-fg">02</span>
+              <p class="mt-2 text-base font-semibold text-ink">
                 Tasvir sana sorular soruyor
               </p>
-              <p class="mt-1.5 text-sm text-slate-300">
+              <p class="mt-1.5 text-sm text-muted">
                 Kaç sayfa olsun, kim okuyacak, hangi örnekler girsin? Cevapları
                 hazır seçeneklerden tıklıyorsun: 1, 5, 10, 15, 25, 50 sayfa —
                 ya da kendi sayını yazıyorsun, 200 sayfaya kadar. Sohbetin
@@ -868,12 +896,12 @@
                 yazılmıyor.
               </p>
             </li>
-            <li class="rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left">
-              <span class="text-sm font-semibold text-brand-light">03</span>
-              <p class="mt-2 text-base font-semibold text-slate-100">
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-5 text-left">
+              <span class="text-sm font-semibold text-brand-fg">03</span>
+              <p class="mt-2 text-base font-semibold text-ink">
                 Sayfalar yazılıp çiziliyor
               </p>
-              <p class="mt-1.5 text-sm text-slate-300">
+              <p class="mt-1.5 text-sm text-muted">
                 Her sayfa iki geçişte üretiliyor: önce metin ve düzen, sonra o
                 sayfanın şekli — geometrik çizim, grafik, tablo, zaman çizelgesi
                 ya da yapay zekâ görseli. Birbirine bağlı sayfalar sırayla,
@@ -882,19 +910,19 @@
                 kaybolmuyor.
               </p>
             </li>
-            <li class="rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left">
-              <span class="text-sm font-semibold text-brand-light">04</span>
-              <p class="mt-2 text-base font-semibold text-slate-100">
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-5 text-left">
+              <span class="text-sm font-semibold text-brand-fg">04</span>
+              <p class="mt-2 text-base font-semibold text-ink">
                 Oku, beğenmediğin sayfayı değiştir, yazdır
               </p>
-              <p class="mt-1.5 text-sm text-slate-300">
+              <p class="mt-1.5 text-sm text-muted">
                 7. sayfa olmadı mı? Sadece onu yeniden üretiyorsun, diğerlerine
                 dokunulmuyor. Sonra PDF olarak indirip A4 yazdırıyor ya da linki
                 paylaşıyorsun.
               </p>
             </li>
           </ol>
-          <p class="mx-auto mt-6 max-w-2xl text-center text-sm text-slate-400">
+          <p class="mx-auto mt-6 max-w-2xl text-center text-sm text-muted">
             Metni ve çizimleri üreten taraf yapay zekâ; sayfayı ölçüp A4'e
             yerleştiren, şekilleri gerçek koordinatlara çeviren taraf ise
             tarayıcın. Bu yüzden sayfalar baskıda dağılmıyor.
@@ -903,13 +931,13 @@
       </section>
 
       <!-- YKS kataloğu: repo'daki 83 dokümanın tamamı -->
-      <section class="w-full border-t border-white/5">
+      <section class="w-full border-t border-line bg-alt">
         <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-14">
           <div class="mx-auto max-w-2xl text-center">
             <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">
               Sınava hazırlanıyorsan: 127 doküman hazır bekliyor
             </h2>
-            <p class="mt-3 text-slate-300">
+            <p class="mt-3 text-muted">
               11 dersten 83 TYT/AYT konu anlatımı ve 44 test, hepsi bir
               katalogda listeli: konuyu seç, linke tıkla, tarayıcıda oku,
               istersen PDF olarak indirip yazdır.
@@ -917,12 +945,12 @@
           </div>
 
           <div
-            class="mt-6 rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left"
+            class="mt-6 rounded-2xl border border-line bg-elevated shadow-card p-5 text-left"
           >
-            <p class="text-base font-semibold text-slate-100">
+            <p class="text-base font-semibold text-ink">
               Aynı konu, on farklı öğrencinin dünyasından anlatıldı
             </p>
-            <p class="mt-2 text-sm text-slate-300">
+            <p class="mt-2 text-sm text-muted">
               Üslü sayılar Minecraft oynayan Emre'ye bit ve bellek üzerinden,
               hareket ve kuvvet Formula 1 izleyen Kaan'a pist üzerinden
               yazıldı. Müfredat aynı, anlatımın girdiği kapı farklı. Her
@@ -936,14 +964,14 @@
           >
             <a
               href="/tr/yks/"
-              class="inline-flex h-14 items-center justify-center rounded-full bg-brand px-6 text-base font-semibold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b12]"
+              class="inline-flex h-12 w-full max-w-sm items-center justify-center rounded-full bg-brand px-6 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-page sm:h-14 sm:w-auto sm:px-8 sm:text-base"
               >127 dokümanın kataloğunu aç</a
             >
             <a
               href="https://github.com/Tasvir-app/Tasvir-YKS-Hazirlik"
               target="_blank"
               rel="noopener"
-              class="inline-flex h-14 items-center justify-center rounded-full border border-white/15 px-6 text-base font-semibold text-slate-100 transition hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="inline-flex h-12 w-full max-w-sm items-center justify-center rounded-full border border-line bg-elevated px-6 text-sm font-semibold text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:h-14 sm:w-auto sm:text-base"
               >İstemlerin tamamı (GitHub)</a
             >
           </div>
@@ -951,12 +979,12 @@
       </section>
 
       <!-- Pricing honesty -->
-      <section class="w-full border-t border-white/5">
+      <section class="w-full border-t border-line bg-alt">
         <div class="mx-auto max-w-3xl px-4 py-12 text-center sm:px-6 sm:py-14">
           <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">
             Ücretsiz başla. Sonra sadece ürettiğin kadar öde.
           </h2>
-          <p class="mx-auto mt-3 max-w-xl text-slate-300">
+          <p class="mx-auto mt-3 max-w-xl text-muted">
             Kayıt olunca hesabına 300 kredi geliyor — yaklaşık 5 sayfa, ilk
             dokümanını baştan sona üretmeye yeter. Sonrası için kredi alırsın:
             abonelik zorunluluğu yok, çalışmadığın ay için aidat yok. Kredi
@@ -967,7 +995,7 @@
             href="https://app.tasvir.ai/signup"
             data-app-link
             data-cta="pricing"
-            class="mt-6 inline-flex h-14 items-center justify-center rounded-full bg-brand px-8 text-base font-semibold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b12]"
+            class="mt-6 inline-flex h-12 w-full max-w-sm items-center justify-center rounded-full bg-brand px-6 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-page sm:h-14 sm:w-auto sm:px-8 sm:text-base"
           >
             Kredileri gör ve ücretsiz başla
           </a>
@@ -975,15 +1003,15 @@
       </section>
 
       <!-- FAQ -->
-      <section class="w-full border-t border-white/5 bg-black/20">
+      <section class="w-full border-t border-line bg-alt">
         <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-14">
           <h2 class="text-center text-2xl font-bold tracking-tight sm:text-3xl">
             Kayıt olmadan önce
           </h2>
           <div class="mt-8 flex flex-col gap-3">
-            <details class="group rounded-2xl border border-white/15 bg-white/[0.06] px-5">
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
               <summary
-                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
                 <span>Bu dokümanları yapay zeka mı yazıyor?</span>
                 <svg
@@ -992,21 +1020,21 @@
                   stroke="currentColor"
                   stroke-width="2"
                   aria-hidden="true"
-                  class="h-5 w-5 shrink-0 text-brand-light transition-transform group-open:rotate-180"
+                  class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300">
+              <p class="pb-4 text-sm text-muted">
                 Evet. Konuyu planlayan, sayfaları yazan ve şekilleri tasarlayan
                 taraf yapay zekâ. Kontrol sende kalıyor: üretim başlamadan planı
                 sen onaylıyorsun, beğenmediğin sayfayı tek başına yeniden
                 ürettiriyorsun, kaç sayfa olacağına sen karar veriyorsun.
               </p>
             </details>
-            <details class="group rounded-2xl border border-white/15 bg-white/[0.06] px-5">
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
               <summary
-                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
                 <span>Ücretsiz ne kadar doküman üretebilirim?</span>
                 <svg
@@ -1015,12 +1043,12 @@
                   stroke="currentColor"
                   stroke-width="2"
                   aria-hidden="true"
-                  class="h-5 w-5 shrink-0 text-brand-light transition-transform group-open:rotate-180"
+                  class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300">
+              <p class="pb-4 text-sm text-muted">
                 Her hesaba bir kez 300 kredi tanımlanıyor: sayfa başına
                 yaklaşık 60 kredi gittiği için bu yaklaşık 5 sayfa, tek bir
                 dokümanı baştan sona üretmeye yeter. Google, Apple ya da
@@ -1030,9 +1058,9 @@
                 alırsın, abonelik yok.
               </p>
             </details>
-            <details class="group rounded-2xl border border-white/15 bg-white/[0.06] px-5">
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
               <summary
-                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
                 <span>Yüklediğim dosyayı saklıyor musunuz?</span>
                 <svg
@@ -1041,19 +1069,19 @@
                   stroke="currentColor"
                   stroke-width="2"
                   aria-hidden="true"
-                  class="h-5 w-5 shrink-0 text-brand-light transition-transform group-open:rotate-180"
+                  class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300">
+              <p class="pb-4 text-sm text-muted">
                 Hayır. Tasvir PDF, Word dosyanı ya da görselini içeriğini anlamak
                 için bir kez okur, yalnızca o üretimde kullanır ve saklamaz.
               </p>
             </details>
-            <details class="group rounded-2xl border border-white/15 bg-white/[0.06] px-5">
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
               <summary
-                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
                 <span>Bunun ChatGPT'den farkı ne?</span>
                 <svg
@@ -1062,21 +1090,21 @@
                   stroke="currentColor"
                   stroke-width="2"
                   aria-hidden="true"
-                  class="h-5 w-5 shrink-0 text-brand-light transition-transform group-open:rotate-180"
+                  class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300">
+              <p class="pb-4 text-sm text-muted">
                 ChatGPT soru cevaplar. Tasvir doküman kurar — planlayıcı ajan önce
                 hedef kitleyi ve sayfa akışını belirler, sonra şekil, tablo,
                 grafik ve formül içeren, 200 sayfaya kadar, gerçekten
                 yazdırılabilir bir doküman üretir.
               </p>
             </details>
-            <details class="group rounded-2xl border border-white/15 bg-white/[0.06] px-5">
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
               <summary
-                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
                 <span>Bir sayfayı beğenmezsem?</span>
                 <svg
@@ -1085,19 +1113,19 @@
                   stroke="currentColor"
                   stroke-width="2"
                   aria-hidden="true"
-                  class="h-5 w-5 shrink-0 text-brand-light transition-transform group-open:rotate-180"
+                  class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300">
+              <p class="pb-4 text-sm text-muted">
                 Sadece o sayfayı yeniden üret. Daha görsel, daha basit, daha uzun
                 yap ya da görseli değiştir — diğer sayfalara dokunulmaz.
               </p>
             </details>
-            <details class="group rounded-2xl border border-white/15 bg-white/[0.06] px-5">
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
               <summary
-                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
                 <span>Hangi tür dokümanları üretebiliyor?</span>
                 <svg
@@ -1106,12 +1134,12 @@
                   stroke="currentColor"
                   stroke-width="2"
                   aria-hidden="true"
-                  class="h-5 w-5 shrink-0 text-brand-light transition-transform group-open:rotate-180"
+                  class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300">
+              <p class="pb-4 text-sm text-muted">
                 Çocuk kitabı, çizgi roman ve görsel hikâye, dergi, gezi
                 rehberi, ders notu ve konu anlatımı, şıklı test, akademik
                 rapor, sunum, iş planı, hatta web ve mobil arayüz tasarımı.
@@ -1126,15 +1154,15 @@
         Kurumsal taraf ürün içinde değil: burada tek hedef, maille ulaştığımız
         kuruma bakacak bir adres olması. Bu yüzden form değil, doğrudan e-posta.
       -->
-      <section class="w-full border-t border-white/5">
+      <section class="w-full border-t border-line bg-alt">
         <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-14">
           <div
-            class="rounded-2xl border border-white/15 bg-white/[0.06] p-6 text-center sm:p-8"
+            class="rounded-2xl border border-line bg-elevated shadow-card p-6 text-center sm:p-8"
           >
             <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">
               Okul, dershane ve yayınevleri için
             </h2>
-            <p class="mx-auto mt-3 max-w-xl text-slate-300">
+            <p class="mx-auto mt-3 max-w-xl text-muted">
               Kendi müfredatınızı, ders notlarınızı ya da PDF arşivinizi
               öğrenciye göre anlatılmış, yazdırılabilir dokümanlara çeviriyoruz.
               Pilot basit: ekibinize kredi tanımlıyoruz, kendi kaynaklarınızla
@@ -1142,10 +1170,10 @@
             </p>
             <a
               href="mailto:support@tasvir.ai?subject=Kurumsal%20pilot%20talebi"
-              class="mt-6 inline-flex h-14 items-center justify-center rounded-full border border-white/15 px-6 text-base font-semibold text-slate-100 transition hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="mt-6 inline-flex h-12 w-full max-w-sm items-center justify-center rounded-full border border-line bg-elevated px-6 text-sm font-semibold text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:h-14 sm:w-auto sm:text-base"
               >Pilot için yazın</a
             >
-            <p class="mt-3 text-sm text-slate-400">
+            <p class="mt-3 text-sm text-muted">
               support@tasvir.ai · Kurum adı ve kaç öğretmen/öğrenci olduğunu
               yazmanız yeterli.
             </p>
@@ -1154,7 +1182,7 @@
       </section>
 
       <!-- Closing CTA -->
-      <section class="w-full border-t border-white/5">
+      <section class="w-full border-t border-line bg-alt">
         <div
           class="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-12 text-center sm:px-6 sm:py-14"
         >
@@ -1165,39 +1193,39 @@
             href="https://app.tasvir.ai/signup"
             data-app-link
             data-cta="footer"
-            class="inline-flex h-14 items-center justify-center rounded-full bg-brand px-8 text-base font-semibold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b12]"
+            class="inline-flex h-12 w-full max-w-sm items-center justify-center rounded-full bg-brand px-6 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-page sm:h-14 sm:w-auto sm:px-8 sm:text-base"
           >
             İlk dokümanını ücretsiz oluştur
           </a>
-          <p class="text-sm text-slate-400">Üret. Oku. Öğren. Paylaş. Yazdır.</p>
+          <p class="text-sm text-muted">Üret. Oku. Öğren. Paylaş. Yazdır.</p>
         </div>
       </section>
 
       <!-- Footer -->
-      <footer class="w-full border-t border-white/5">
+      <footer class="w-full border-t border-line">
         <div
-          class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-slate-400 sm:flex-row sm:px-6"
+          class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-muted sm:flex-row sm:px-6"
         >
           <p>&copy; <span id="year">2026</span> Tasvir</p>
           <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
             <a
               href="mailto:support@tasvir.ai"
-              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-white"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
               >İletişim</a
             >
             <a
               href="https://app.tasvir.ai/privacy"
-              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-white"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
               >Gizlilik Politikası</a
             >
             <a
               href="https://app.tasvir.ai/terms"
-              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-white"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
               >Kullanım Şartları</a
             >
             <a
               href="https://app.tasvir.ai/main?legal=kvkk"
-              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-white"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
               >KVKK Aydınlatma Metni</a
             >
           </div>
@@ -1273,5 +1301,6 @@
         track("landing_view", { lang: LANG });
       })();
     </script>
+    <script src="../theme.js" defer></script>
   </body>
 </html>

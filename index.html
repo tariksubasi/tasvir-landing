@@ -2,7 +2,17 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("tasvir:theme") === "dark") {
+            document.documentElement.classList.add("dark");
+            document.documentElement.style.colorScheme = "dark";
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
 
     <title>Tasvir — Turn any PDF or topic into a visual study document</title>
     <meta
@@ -14,7 +24,7 @@
     <link rel="alternate" hreflang="tr" href="https://tasvir.ai/tr/" />
     <link rel="alternate" hreflang="x-default" href="https://tasvir.ai/" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0b0b12" />
+    <meta name="theme-color" content="#ffffff" />
 
     <!--
       Turkish-first for a Turkish visitor. GitHub Pages cannot see the visitor's
@@ -209,14 +219,14 @@
     </script>
   </head>
 
-  <body class="min-h-[100svh] bg-[#0b0b12] font-sans text-slate-100 antialiased">
+  <body class="min-h-[100svh] bg-page font-sans text-ink antialiased">
     <div class="flex min-h-[100svh] flex-col">
       <!-- Header -->
-      <header class="w-full border-b border-white/5">
+      <header class="sticky top-0 z-20 w-full border-b border-line bg-page/90 pt-[env(safe-area-inset-top)] backdrop-blur-md">
         <nav
-          class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6"
+          class="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:gap-4 sm:px-6"
         >
-          <a href="/" class="flex items-center gap-2" aria-label="Tasvir home">
+          <a href="/" class="flex min-h-11 items-center gap-2" aria-label="Tasvir home">
             <img
               src="./icon.svg"
               alt="Tasvir logo"
@@ -224,10 +234,26 @@
               height="32"
               class="h-8 w-8 rounded-lg"
             />
-            <span class="text-lg font-bold tracking-tight">Tasvir</span>
+            <span class="hidden text-lg font-bold tracking-tight min-[400px]:inline">Tasvir</span>
           </a>
 
-          <div class="flex items-center gap-2 sm:gap-3">
+          <div class="flex items-center gap-1.5 sm:gap-3">
+            <button
+              type="button"
+              data-theme-toggle
+              data-label-dark="Switch to dark mode"
+              data-label-light="Switch to light mode"
+              aria-pressed="false"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-elevated text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+            >
+              <svg class="theme-moon h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M21 14.3A8.5 8.5 0 0 1 9.7 3 7 7 0 1 0 21 14.3z" />
+              </svg>
+              <svg class="theme-sun h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+              </svg>
+            </button>
             <!--
               Turkish lives at its own URL, so the switch is a link a crawler can
               follow rather than an in-place text swap.
@@ -235,7 +261,7 @@
             <a
               href="/tr/"
               hreflang="tr"
-              class="inline-flex h-11 items-center rounded-full border border-white/15 px-3.5 text-sm font-medium text-slate-200 transition hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="inline-flex h-11 min-w-11 items-center justify-center rounded-full border border-line bg-elevated px-3 text-sm font-medium text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
               >TR</a
             >
 
@@ -243,7 +269,7 @@
               href="https://app.tasvir.ai/signin"
               data-app-link
               data-cta="header-signin"
-              class="hidden h-11 items-center rounded-full px-4 text-sm font-medium text-slate-200 transition hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:inline-flex"
+              class="hidden h-11 items-center rounded-full px-4 text-sm font-medium text-ink transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:inline-flex"
               data-i18n="signIn"
               >Sign in</a
             >
@@ -251,7 +277,7 @@
               href="https://app.tasvir.ai/signup"
               data-app-link
               data-cta="header"
-              class="inline-flex h-11 items-center rounded-full bg-brand px-4 text-sm font-semibold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="inline-flex h-11 items-center rounded-full bg-brand px-3 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:px-4"
               data-i18n="signUp"
               >Start free</a
             >
@@ -262,7 +288,7 @@
       <!-- Hero: the demo is the hero visual, the CTA sits right under it -->
       <main class="w-full">
         <div
-          class="mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 py-8 text-center sm:px-6 sm:py-12"
+          class="hero-stack mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 py-8 text-center sm:px-6 sm:py-12"
         >
           <h1
             class="max-w-3xl text-[clamp(1.75rem,1.1rem_+_3.2vw,3rem)] font-extrabold leading-tight tracking-tight"
@@ -270,7 +296,7 @@
           >
             Turn any PDF or topic into a visual study document.
           </h1>
-          <p class="max-w-xl text-base text-slate-300 sm:text-lg" data-i18n="heroSubtitle">
+          <p class="max-w-xl text-base text-muted sm:text-lg" data-i18n="heroSubtitle">
             Upload your lecture notes or type what you're studying. Tasvir
             writes up to 200 illustrated pages you can read, edit and print.
           </p>
@@ -281,7 +307,7 @@
           -->
           <div
             id="video-frame"
-            class="relative mx-auto aspect-video w-full max-w-[calc(42vh*16/9)] overflow-hidden rounded-2xl border border-white/15 bg-black shadow-2xl shadow-black/50"
+            class="video-stage relative mx-auto overflow-hidden rounded-2xl bg-preview shadow-lift"
           >
             <button
               type="button"
@@ -299,7 +325,7 @@
                 class="absolute inset-0 h-full w-full object-cover opacity-70 transition group-hover:opacity-100"
               />
               <span
-                class="relative inline-flex items-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-semibold text-white shadow-2xl shadow-black/50 transition group-hover:bg-brand-dark sm:text-base"
+                class="relative inline-flex h-11 min-w-11 items-center gap-2 rounded-full bg-brand px-3 text-sm font-semibold text-white shadow-card transition group-hover:bg-brand-dark sm:h-auto sm:px-5 sm:py-3 sm:text-base"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -309,7 +335,7 @@
                 >
                   <path d="M8 5v14l11-7z" />
                 </svg>
-                <span data-i18n="videoPlay">Watch the 90s demo</span>
+                <span class="hidden min-[420px]:inline" data-i18n="videoPlay">Watch the 90s demo</span>
               </span>
             </button>
           </div>
@@ -319,12 +345,12 @@
               href="https://app.tasvir.ai/signup"
               data-app-link
               data-cta="hero"
-              class="inline-flex h-14 items-center justify-center rounded-full bg-brand px-8 text-base font-semibold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b12]"
+              class="inline-flex h-12 w-full max-w-sm items-center justify-center rounded-full bg-brand px-6 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-page sm:h-14 sm:w-auto sm:px-8 sm:text-base"
               data-i18n="cta"
             >
               Create your first document — free
             </a>
-            <p class="text-sm text-slate-400" data-i18n="ctaNote">
+            <p class="text-sm text-muted" data-i18n="ctaNote">
               300 free credits on signup · No credit card · Any language
             </p>
           </div>
@@ -332,7 +358,7 @@
       </main>
 
       <!-- Real examples -->
-      <section class="w-full border-t border-white/5 bg-black/20">
+      <section class="w-full border-t border-line bg-alt">
         <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
           <div class="mx-auto mb-8 max-w-2xl text-center">
             <h2
@@ -341,7 +367,7 @@
             >
               Open a finished document
             </h2>
-            <p class="mt-3 text-slate-300" data-i18n="examplesSubtitle">
+            <p class="mt-3 text-muted" data-i18n="examplesSubtitle">
               No signup needed. These are real documents Tasvir generated, live
               in the app.
             </p>
@@ -355,10 +381,10 @@
               data-app-link
               data-cta="example"
               data-example="the-matrix"
-              class="group flex flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="group flex flex-col gap-2.5 rounded-2xl border border-line bg-elevated shadow-card p-5 text-left transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -374,19 +400,19 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 data-i18n="tagFilm"
                 >Film &amp; gaming</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >The Matrix Universe Guide</span
               >
-              <span class="text-sm text-slate-400" data-i18n="exMatrix"
+              <span class="text-sm text-muted" data-i18n="exMatrix"
                 >Film timeline, character ratings and a red pill / blue pill
                 decision diagram.</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 data-i18n="openExample"
                 >Open live example &rarr;</span
               >
@@ -399,10 +425,10 @@
               data-app-link
               data-cta="example"
               data-example="fenerbahce-history"
-              class="group flex flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="group flex flex-col gap-2.5 rounded-2xl border border-line bg-elevated shadow-card p-5 text-left transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -418,19 +444,19 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 data-i18n="tagSports"
                 >Sports</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >Fenerbahce 1907-2027</span
               >
-              <span class="text-sm text-slate-400" data-i18n="exFenerbahce"
+              <span class="text-sm text-muted" data-i18n="exFenerbahce"
                 >120 years of club history, illustrated, with era-by-era
                 statistics.</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 data-i18n="openExample"
                 >Open live example &rarr;</span
               >
@@ -443,10 +469,10 @@
               data-app-link
               data-cta="example"
               data-example="gradient-descent"
-              class="group flex flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="group flex flex-col gap-2.5 rounded-2xl border border-line bg-elevated shadow-card p-5 text-left transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -462,18 +488,18 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 data-i18n="tagTechnical"
                 >Technical</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >Machine Learning &amp; Gradient Descent</span
               >
-              <span class="text-sm text-slate-400" data-i18n="exMl"
+              <span class="text-sm text-muted" data-i18n="exMl"
                 >An algorithm explained with technical diagrams and code.</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 data-i18n="openExample"
                 >Open live example &rarr;</span
               >
@@ -486,10 +512,10 @@
               data-app-link
               data-cta="example"
               data-example="renewable-energy"
-              class="group flex flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="group flex flex-col gap-2.5 rounded-2xl border border-line bg-elevated shadow-card p-5 text-left transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -505,18 +531,18 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 data-i18n="tagAcademic"
                 >Academic report</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >Turkey's Renewable Energy Policies</span
               >
-              <span class="text-sm text-slate-400" data-i18n="exEnergy"
+              <span class="text-sm text-muted" data-i18n="exEnergy"
                 >A thesis-style draft with data tables and charts.</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 data-i18n="openExample"
                 >Open live example &rarr;</span
               >
@@ -529,10 +555,10 @@
               data-app-link
               data-cta="example"
               data-example="human-body-atlas"
-              class="group flex flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="group flex flex-col gap-2.5 rounded-2xl border border-line bg-elevated shadow-card p-5 text-left transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -548,18 +574,18 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 data-i18n="tagKids"
                 >Kids</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >Human Body Atlas</span
               >
-              <span class="text-sm text-slate-400" data-i18n="exAtlas"
+              <span class="text-sm text-muted" data-i18n="exAtlas"
                 >Every body system illustrated, printable as a workbook.</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 data-i18n="openExample"
                 >Open live example &rarr;</span
               >
@@ -572,10 +598,10 @@
               data-app-link
               data-cta="example"
               data-example="republic-100"
-              class="group flex flex-col gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left transition hover:border-brand/50 hover:bg-white/[0.10] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="group flex flex-col gap-2.5 rounded-2xl border border-line bg-elevated shadow-card p-5 text-left transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <span
-                class="block w-full overflow-hidden rounded-xl border border-white/15 bg-[#0b0b12]"
+                class="doc-preview block w-full overflow-hidden rounded-xl"
                 style="aspect-ratio: 210 / 297"
                 aria-hidden="true"
               >
@@ -591,18 +617,18 @@
                 />
               </span>
               <span
-                class="inline-flex w-fit items-center rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand-light"
+                class="inline-flex w-fit items-center rounded-full bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-fg"
                 data-i18n="tagMagazine"
                 >Magazine</span
               >
-              <span class="text-base font-semibold text-slate-100"
+              <span class="text-base font-semibold text-ink"
                 >100th Anniversary of the Turkish Republic</span
               >
-              <span class="text-sm text-slate-400" data-i18n="exRepublic"
+              <span class="text-sm text-muted" data-i18n="exRepublic"
                 >Editorial layout, historical timeline and charts.</span
               >
               <span
-                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-light"
+                class="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-brand-fg"
                 data-i18n="openExample"
                 >Open live example &rarr;</span
               >
@@ -614,7 +640,7 @@
               href="https://github.com/Tasvir-app/Tasvir"
               target="_blank"
               rel="noopener"
-              class="inline-flex h-11 items-center gap-1 rounded-full px-4 text-sm font-medium text-slate-300 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="inline-flex h-11 items-center gap-1 rounded-full px-4 text-sm font-medium text-muted transition hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
               data-i18n="examplesMore"
               >See all examples &rarr;</a
             >
@@ -623,7 +649,7 @@
       </section>
 
       <!-- How it works -->
-      <section class="w-full border-t border-white/5">
+      <section class="w-full border-t border-line bg-alt">
         <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-14">
           <h2
             class="text-center text-2xl font-bold tracking-tight sm:text-3xl"
@@ -631,38 +657,38 @@
           >
             Every document above was made this way — so can yours
           </h2>
-          <p class="mx-auto mt-3 max-w-2xl text-center text-slate-300" data-i18n="howSubtitle">
+          <p class="mx-auto mt-3 max-w-2xl text-center text-muted" data-i18n="howSubtitle">
             Four steps, and the only thing you write is the sentence in step one.
           </p>
           <ol class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <li class="rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left">
-              <span class="text-sm font-semibold text-brand-light">01</span>
-              <p class="mt-2 text-base font-semibold text-slate-100" data-i18n="how1Title">
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-5 text-left">
+              <span class="text-sm font-semibold text-brand-fg">01</span>
+              <p class="mt-2 text-base font-semibold text-ink" data-i18n="how1Title">
                 You say what you need
               </p>
-              <p class="mt-1.5 text-sm text-slate-300" data-i18n="how1Body">
+              <p class="mt-1.5 text-sm text-muted" data-i18n="how1Body">
                 One sentence is enough. Or drop in a PDF, a Word file or a photo
                 of your notes.
               </p>
             </li>
-            <li class="rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left">
-              <span class="text-sm font-semibold text-brand-light">02</span>
-              <p class="mt-2 text-base font-semibold text-slate-100" data-i18n="how2Title">
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-5 text-left">
+              <span class="text-sm font-semibold text-brand-fg">02</span>
+              <p class="mt-2 text-base font-semibold text-ink" data-i18n="how2Title">
                 Tasvir asks you questions
               </p>
-              <p class="mt-1.5 text-sm text-slate-300" data-i18n="how2Body">
+              <p class="mt-1.5 text-sm text-muted" data-i18n="how2Body">
                 How long, who reads it, which examples? You answer by tapping
                 options — 1, 5, 10, 15, 25 or 50 pages, or type your own up to
                 200 — and a section-by-section plan appears. Nothing is written
                 until you approve it.
               </p>
             </li>
-            <li class="rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left">
-              <span class="text-sm font-semibold text-brand-light">03</span>
-              <p class="mt-2 text-base font-semibold text-slate-100" data-i18n="how3Title">
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-5 text-left">
+              <span class="text-sm font-semibold text-brand-fg">03</span>
+              <p class="mt-2 text-base font-semibold text-ink" data-i18n="how3Title">
                 Pages are written and drawn
               </p>
-              <p class="mt-1.5 text-sm text-slate-300" data-i18n="how3Body">
+              <p class="mt-1.5 text-sm text-muted" data-i18n="how3Body">
                 Each page takes two passes: the text and layout first, then its
                 visual — a geometric drawing, chart, table, timeline or an AI
                 image. Pages that build on each other are written in order,
@@ -670,18 +696,18 @@
                 progress is never lost.
               </p>
             </li>
-            <li class="rounded-2xl border border-white/15 bg-white/[0.06] p-5 text-left">
-              <span class="text-sm font-semibold text-brand-light">04</span>
-              <p class="mt-2 text-base font-semibold text-slate-100" data-i18n="how4Title">
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-5 text-left">
+              <span class="text-sm font-semibold text-brand-fg">04</span>
+              <p class="mt-2 text-base font-semibold text-ink" data-i18n="how4Title">
                 Read it, fix a page, print it
               </p>
-              <p class="mt-1.5 text-sm text-slate-300" data-i18n="how4Body">
+              <p class="mt-1.5 text-sm text-muted" data-i18n="how4Body">
                 Page 7 not right? Regenerate only that page. Then export to PDF,
                 print A4/A3, or share the link.
               </p>
             </li>
           </ol>
-          <p class="mx-auto mt-6 max-w-2xl text-center text-sm text-slate-400" data-i18n="howNote">
+          <p class="mx-auto mt-6 max-w-2xl text-center text-sm text-muted" data-i18n="howNote">
             The AI writes the text and designs the visuals; your browser is what
             measures every page and lays it out for A4, which is why the pages
             hold together in print.
@@ -690,7 +716,7 @@
       </section>
 
       <!-- Pricing honesty -->
-      <section class="w-full border-t border-white/5">
+      <section class="w-full border-t border-line bg-alt">
         <div class="mx-auto max-w-3xl px-4 py-12 text-center sm:px-6 sm:py-14">
           <h2
             class="text-2xl font-bold tracking-tight sm:text-3xl"
@@ -698,7 +724,7 @@
           >
             Start free. Then pay only for what you generate.
           </h2>
-          <p class="mx-auto mt-3 max-w-xl text-slate-300" data-i18n="pricingBody">
+          <p class="mx-auto mt-3 max-w-xl text-muted" data-i18n="pricingBody">
             You start with 300 credits — about five pages, enough for a complete
             first document. After that you buy credits: no subscription
             lock-in, no monthly fee for a month you did not study. Credits are
@@ -708,7 +734,7 @@
             href="https://app.tasvir.ai/signup"
             data-app-link
             data-cta="pricing"
-            class="mt-6 inline-flex h-14 items-center justify-center rounded-full bg-brand px-8 text-base font-semibold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b12]"
+            class="mt-6 inline-flex h-12 w-full max-w-sm items-center justify-center rounded-full bg-brand px-6 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-page sm:h-14 sm:w-auto sm:px-8 sm:text-base"
             data-i18n="pricingCta"
           >
             See credits and start free
@@ -717,7 +743,7 @@
       </section>
 
       <!-- FAQ -->
-      <section class="w-full border-t border-white/5 bg-black/20">
+      <section class="w-full border-t border-line bg-alt">
         <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-14">
           <h2
             class="text-center text-2xl font-bold tracking-tight sm:text-3xl"
@@ -726,9 +752,9 @@
             Before you sign up
           </h2>
           <div class="mt-8 flex flex-col gap-3">
-            <details class="group rounded-2xl border border-white/15 bg-white/[0.06] px-5">
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
               <summary
-                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
                 <span data-i18n="faqAiQ">Is the document written by AI?</span>
                 <svg
@@ -737,21 +763,21 @@
                   stroke="currentColor"
                   stroke-width="2"
                   aria-hidden="true"
-                  class="h-5 w-5 shrink-0 text-brand-light transition-transform group-open:rotate-180"
+                  class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300" data-i18n="faqAiA">
+              <p class="pb-4 text-sm text-muted" data-i18n="faqAiA">
                 Yes. The AI plans the document, writes the pages and designs
                 the visuals. You stay in control: you approve the plan before
                 anything is written, you choose the length, and you can
                 regenerate any single page you do not like.
               </p>
             </details>
-            <details class="group rounded-2xl border border-white/15 bg-white/[0.06] px-5">
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
               <summary
-                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
                 <span data-i18n="faq0Q">What do I get for free?</span>
                 <svg
@@ -760,21 +786,21 @@
                   stroke="currentColor"
                   stroke-width="2"
                   aria-hidden="true"
-                  class="h-5 w-5 shrink-0 text-brand-light transition-transform group-open:rotate-180"
+                  class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300" data-i18n="faq0A">
+              <p class="pb-4 text-sm text-muted" data-i18n="faq0A">
                 300 credits, once, when you create your account — about five
                 pages at balanced quality with AI images, valid for 30 days and
                 no card required. When they run out you buy a credit pack;
                 there is no subscription.
               </p>
             </details>
-            <details class="group rounded-2xl border border-white/15 bg-white/[0.06] px-5">
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
               <summary
-                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
                 <span data-i18n="faq1Q">Do you store the file I upload?</span>
                 <svg
@@ -783,19 +809,19 @@
                   stroke="currentColor"
                   stroke-width="2"
                   aria-hidden="true"
-                  class="h-5 w-5 shrink-0 text-brand-light transition-transform group-open:rotate-180"
+                  class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300" data-i18n="faq1A">
+              <p class="pb-4 text-sm text-muted" data-i18n="faq1A">
                 No. Tasvir reads your PDF, Word file or image once to understand
                 it, uses it for that single generation, and does not store it.
               </p>
             </details>
-            <details class="group rounded-2xl border border-white/15 bg-white/[0.06] px-5">
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
               <summary
-                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
                 <span data-i18n="faq2Q">How is this different from ChatGPT?</span>
                 <svg
@@ -804,21 +830,21 @@
                   stroke="currentColor"
                   stroke-width="2"
                   aria-hidden="true"
-                  class="h-5 w-5 shrink-0 text-brand-light transition-transform group-open:rotate-180"
+                  class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300" data-i18n="faq2A">
+              <p class="pb-4 text-sm text-muted" data-i18n="faq2A">
                 ChatGPT answers questions. Tasvir builds documents — a planner
                 agent decides the audience and page flow first, then generates up
                 to 50 paginated pages with images, tables, charts and diagrams
                 you can actually print.
               </p>
             </details>
-            <details class="group rounded-2xl border border-white/15 bg-white/[0.06] px-5">
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
               <summary
-                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
                 <span data-i18n="faq3Q">What if I do not like one page?</span>
                 <svg
@@ -827,19 +853,19 @@
                   stroke="currentColor"
                   stroke-width="2"
                   aria-hidden="true"
-                  class="h-5 w-5 shrink-0 text-brand-light transition-transform group-open:rotate-180"
+                  class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300" data-i18n="faq3A">
+              <p class="pb-4 text-sm text-muted" data-i18n="faq3A">
                 Regenerate just that page. Make it more visual, simpler, longer,
                 or swap an image — every other page stays untouched.
               </p>
             </details>
-            <details class="group rounded-2xl border border-white/15 bg-white/[0.06] px-5">
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
               <summary
-                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
               >
                 <span data-i18n="faq4Q">Which languages does it support?</span>
                 <svg
@@ -848,12 +874,12 @@
                   stroke="currentColor"
                   stroke-width="2"
                   aria-hidden="true"
-                  class="h-5 w-5 shrink-0 text-brand-light transition-transform group-open:rotate-180"
+                  class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p class="pb-4 text-sm text-slate-300" data-i18n="faq4A">
+              <p class="pb-4 text-sm text-muted" data-i18n="faq4A">
                 Write your prompt in any language and Tasvir generates the whole
                 document in that language.
               </p>
@@ -863,7 +889,7 @@
       </section>
 
       <!-- Closing CTA -->
-      <section class="w-full border-t border-white/5">
+      <section class="w-full border-t border-line bg-alt">
         <div
           class="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-12 text-center sm:px-6 sm:py-14"
         >
@@ -877,45 +903,45 @@
             href="https://app.tasvir.ai/signup"
             data-app-link
             data-cta="footer"
-            class="inline-flex h-14 items-center justify-center rounded-full bg-brand px-8 text-base font-semibold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b12]"
+            class="inline-flex h-12 w-full max-w-sm items-center justify-center rounded-full bg-brand px-6 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-page sm:h-14 sm:w-auto sm:px-8 sm:text-base"
             data-i18n="cta"
           >
             Create your first document — free
           </a>
-          <p class="text-sm text-slate-400" data-i18n="tagline">
+          <p class="text-sm text-muted" data-i18n="tagline">
             Generate. Read. Learn. Share. Print.
           </p>
         </div>
       </section>
 
       <!-- Footer -->
-      <footer class="w-full border-t border-white/5">
+      <footer class="w-full border-t border-line">
         <div
-          class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-slate-400 sm:flex-row sm:px-6"
+          class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-muted sm:flex-row sm:px-6"
         >
           <p>&copy; <span id="year">2026</span> Tasvir</p>
           <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
             <a
               href="mailto:support@tasvir.ai"
-              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-white"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
               data-i18n="contact"
               >Contact</a
             >
             <a
               href="https://app.tasvir.ai/privacy"
-              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-white"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
               data-i18n="privacy"
               >Privacy Policy</a
             >
             <a
               href="https://app.tasvir.ai/terms"
-              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-white"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
               data-i18n="terms"
               >Terms of Use</a
             >
             <a
               href="https://app.tasvir.ai/main?legal=kvkk"
-              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-white"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
               data-i18n="kvkk"
               >KVKK Notice</a
             >
@@ -1101,5 +1127,6 @@
         track("landing_view", { lang: currentLang });
       })();
     </script>
+    <script src="./theme.js" defer></script>
   </body>
 </html>
