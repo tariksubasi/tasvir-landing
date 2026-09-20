@@ -28,44 +28,83 @@
 
     <!--
       Turkish-first for a visitor in Turkey. GitHub Pages cannot see IP country,
-      so the signals are Europe/Istanbul (same check as the app) and a Turkish
-      top language. This runs in <head> so the English page never flashes.
-      Googlebot crawls with en-US / a non-Istanbul timezone, so the English URL
-      stays reachable. An explicit choice wins: the EN link on /tr/ carries
-      ?lang=en, which is remembered so nobody is bounced back to Turkish twice.
+      so the signals are Istanbul timezone, any Turkish language, and the OS
+      locale. This runs in <head> so the English page never flashes. Googlebot
+      crawls with en-US / a non-Istanbul timezone, so the English URL stays
+      reachable. An explicit EN click (?lang=en) is remembered for this tab
+      only; the next visit from Turkey still opens /tr/.
     -->
     <script>
       (function () {
         var KEY = "tasvir:lang-pref";
+        var session = null;
         var store = null;
+        try {
+          session = window.sessionStorage;
+        } catch (e) {}
         try {
           store = window.localStorage;
         } catch (e) {}
 
-        if (new URLSearchParams(window.location.search).get("lang") === "en") {
+        function readSession() {
           try {
-            store && store.setItem(KEY, "en");
+            return (session && session.getItem(KEY)) || "";
+          } catch (e) {
+            return "";
+          }
+        }
+
+        var langParam = "";
+        try {
+          langParam = new URLSearchParams(window.location.search).get("lang") || "";
+        } catch (e) {}
+
+        if (langParam === "en") {
+          try {
+            session && session.setItem(KEY, "en");
+          } catch (e) {}
+          try {
+            store && store.removeItem(KEY);
           } catch (e) {}
           return;
         }
 
+        if (readSession() === "en") return;
+
         try {
-          if (store && store.getItem(KEY) === "en") return;
+          store && store.removeItem(KEY);
         } catch (e) {}
 
         var tz = "";
+        var locale = "";
         try {
-          tz = String(Intl.DateTimeFormat().resolvedOptions().timeZone || "");
+          var resolved = Intl.DateTimeFormat().resolvedOptions();
+          tz = String(resolved.timeZone || "").toLowerCase();
+          locale = String(resolved.locale || "").toLowerCase().replace(/_/g, "-");
         } catch (e) {}
-        var inTurkey =
-          tz === "Europe/Istanbul" || tz === "Asia/Istanbul" || tz === "Turkey";
 
-        var primary = String(
-          (navigator.languages && navigator.languages[0]) ||
-            navigator.language ||
-            ""
-        ).toLowerCase();
-        var turkishLang = primary === "tr" || primary.indexOf("tr-") === 0;
+        var inTurkey =
+          tz === "europe/istanbul" ||
+          tz === "asia/istanbul" ||
+          tz === "turkey" ||
+          tz.indexOf("istanbul") !== -1;
+
+        function isTurkishTag(tag) {
+          var l = String(tag || "").toLowerCase().replace(/_/g, "-");
+          return l === "tr" || l.indexOf("tr-") === 0;
+        }
+
+        var turkishLang = isTurkishTag(locale);
+        try {
+          var langs = navigator.languages || [];
+          for (var i = 0; i < langs.length; i++) {
+            if (isTurkishTag(langs[i])) {
+              turkishLang = true;
+              break;
+            }
+          }
+          if (!turkishLang) turkishLang = isTurkishTag(navigator.language);
+        } catch (e) {}
 
         if (inTurkey || turkishLang) {
           window.location.replace("/tr/" + window.location.search);

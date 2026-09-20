@@ -10,6 +10,10 @@
             document.documentElement.style.colorScheme = "dark";
           }
         } catch (e) {}
+        try {
+          localStorage.removeItem("tasvir:lang-pref");
+          sessionStorage.removeItem("tasvir:lang-pref");
+        } catch (e) {}
       })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />

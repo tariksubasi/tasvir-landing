@@ -10,6 +10,10 @@
             document.documentElement.style.colorScheme = "dark";
           }
         } catch (e) {}
+        try {
+          localStorage.removeItem("tasvir:lang-pref");
+          sessionStorage.removeItem("tasvir:lang-pref");
+        } catch (e) {}
       })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
@@ -198,9 +202,9 @@
             </button>
             <!--
               A real anchor rather than a JS toggle, and ?lang=en on purpose:
-              the English page redirects a Turkish browser here, so without an
-              explicit signal this link would bounce straight back. The English
-              page stores the choice, so it only has to be made once.
+              the English page redirects a visitor in Turkey here, so without
+              an explicit signal this link would bounce straight back. That
+              choice is stored for this tab only.
             -->
             <a
               href="/?lang=en"
