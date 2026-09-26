@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("tasvir:theme") === "dark") {
+            document.documentElement.classList.add("dark");
+            document.documentElement.style.colorScheme = "dark";
+          }
+        } catch (e) {}
+        try {
+          localStorage.removeItem("tasvir:lang-pref");
+          sessionStorage.removeItem("tasvir:lang-pref");
+        } catch (e) {}
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Tasvir neler çizebilir — grafik, diyagram, geometri ve yapay zekâ görselleri</title>
+    <meta
+      name="description"
+      content="25 grafik türü; kanban, zihin haritası, zaman çizelgesi ve gantt dahil 17 diyagram türü; geometrik çizimler, LaTeX formüller, kod blokları ve yapay zekâ görselleri. Her görsel, durduğu sayfa için çiziliyor — A4 dokümanda da, serbest canvas serisinde de."
+    />
+    <link rel="canonical" href="https://tasvir.ai/tr/ozellikler/" />
+    <link rel="alternate" hreflang="tr" href="https://tasvir.ai/tr/ozellikler/" />
+    <link rel="alternate" hreflang="en" href="https://tasvir.ai/features/" />
+    <link rel="alternate" hreflang="x-default" href="https://tasvir.ai/features/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tasvir" />
+    <meta property="og:title" content="Tasvir neler çizebilir" />
+    <meta
+      property="og:description"
+      content="25 grafik türü, 17 diyagram türü, geometri, LaTeX, kod ve yapay zekâ görselleri — durduğu sayfa için çiziliyor."
+    />
+    <meta property="og:url" content="https://tasvir.ai/tr/ozellikler/" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:image" content="https://tasvir.ai/assets/og-card.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tasvir neler çizebilir" />
+    <meta
+      name="twitter:description"
+      content="25 grafik türü, 17 diyagram türü, geometri, LaTeX, kod ve yapay zekâ görselleri."
+    />
+    <meta name="twitter:image" content="https://tasvir.ai/assets/og-card.jpg" />
+
+    <link rel="icon" type="image/svg+xml" href="../../icon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../styles.css" />
+  </head>
+
+  <body class="min-h-[100svh] bg-page font-sans text-ink antialiased">
+    <div class="flex min-h-[100svh] flex-col">
+      <!-- Header -->
+      <header class="sticky top-0 z-20 w-full border-b border-line bg-page/90 pt-[env(safe-area-inset-top)] backdrop-blur-md">
+        <nav
+          class="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:gap-4 sm:px-6"
+        >
+          <a href="/tr/" class="flex min-h-11 items-center gap-2" aria-label="Tasvir ana sayfa">
+            <img
+              src="../../icon.svg"
+              alt="Tasvir logosu"
+              width="32"
+              height="32"
+              class="h-8 w-8 rounded-lg"
+            />
+            <span class="hidden text-lg font-bold tracking-tight min-[400px]:inline">Tasvir</span>
+          </a>
+
+          <div class="flex items-center gap-1.5 sm:gap-3">
+            <button
+              type="button"
+              data-theme-toggle
+              data-label-dark="Koyu görünüme geç"
+              data-label-light="Açık görünüme geç"
+              aria-pressed="false"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-elevated text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+            >
+              <svg class="theme-moon h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M21 14.3A8.5 8.5 0 0 1 9.7 3 7 7 0 1 0 21 14.3z" />
+              </svg>
+              <svg class="theme-sun h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+              </svg>
+            </button>
+            <!--
+              A real anchor rather than a JS toggle, and ?lang=en on purpose:
+              the English page redirects a visitor in Turkey here, so without
+              an explicit signal this link would bounce straight back. That
+              choice is stored for this tab only.
+            -->
+            <a
+              href="/features/?lang=en"
+              hreflang="en"
+              class="inline-flex h-11 min-w-11 items-center justify-center rounded-full border border-line bg-elevated px-3 text-sm font-medium text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              >EN</a
+            >
+            <a
+              href="https://app.tasvir.ai/signin"
+              data-app-link
+              data-cta="header-signin"
+              class="hidden h-11 items-center rounded-full px-4 text-sm font-medium text-ink transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:inline-flex"
+              >Giriş yap</a
+            >
+            <a
+              href="https://app.tasvir.ai/signup"
+              data-app-link
+              data-cta="header"
+              class="inline-flex h-11 items-center rounded-full bg-brand px-3 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:px-4"
+            >
+              <span class="sm:hidden">Başla</span>
+              <span class="hidden sm:inline">Ücretsiz başla</span>
+            </a>
+          </div>
+        </nav>
+      </header>
+
+      <main class="w-full">
+        <!-- Hero -->
+        <div
+          class="mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 py-10 text-center sm:px-6 sm:py-14"
+        >
+          <h1
+            class="max-w-3xl text-[clamp(1.75rem,1.1rem_+_3.2vw,3rem)] font-extrabold leading-tight tracking-tight"
+          >
+            Her görsel, durduğu sayfa için çiziliyor.
+          </h1>
+          <p class="max-w-2xl text-base text-muted sm:text-lg">
+            Tasvir hazır resim yapıştırmıyor. Her sayfada fikrin ihtiyaç duyduğu
+            görseli seçiyor — grafik, diyagram, geometrik çizim, formül ya da
+            yapay zekâ görseli — ve metinle birlikte sayfaya yerleştiriyor.
+          </p>
+          <ul class="grid w-full max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-4">
+              <p class="text-3xl font-extrabold text-ink">25</p>
+              <p class="mt-1 text-sm text-muted">grafik türü</p>
+            </li>
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-4">
+              <p class="text-3xl font-extrabold text-ink">17</p>
+              <p class="mt-1 text-sm text-muted">diyagram türü</p>
+            </li>
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-4">
+              <p class="text-3xl font-extrabold text-ink">LaTeX</p>
+              <p class="mt-1 text-sm text-muted">geometri ve formül</p>
+            </li>
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-4">
+              <p class="text-3xl font-extrabold text-ink">AI</p>
+              <p class="mt-1 text-sm text-muted">sayfa başına görsel</p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Real pages -->
+        <section class="w-full border-t border-line bg-alt">
+          <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
+            <h2 class="text-center text-2xl font-bold tracking-tight sm:text-3xl">
+              Gerçek dokümanlardan
+            </h2>
+            <p class="mx-auto mt-3 max-w-2xl text-center text-muted">
+              Hepsi, Tasvir'in tek bir cümleden ürettiği bir YKS dokümanının ilk
+              sayfası.
+            </p>
+            <div class="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+              <figure class="flex flex-col gap-2">
+                <span
+                  class="block w-full overflow-hidden rounded-xl border border-line bg-preview"
+                  style="aspect-ratio: 210 / 297"
+                >
+                  <img
+                    src="../../assets/features/charts.webp"
+                    alt="Kesen doğrusunun teğete dönüştüğü bir fonksiyon grafiği ve LaTeX formüller"
+                    width="420"
+                    height="594"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-contain"
+                  />
+                </span>
+                <figcaption class="text-sm text-muted">Grafik ve formül</figcaption>
+              </figure>
+              <figure class="flex flex-col gap-2">
+                <span
+                  class="block w-full overflow-hidden rounded-xl border border-line bg-preview"
+                  style="aspect-ratio: 210 / 297"
+                >
+                  <img
+                    src="../../assets/features/diagrams.webp"
+                    alt="Doğal sayılardan rasyonel sayılara sayı kümelerinin akış diyagramı"
+                    width="420"
+                    height="594"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-contain"
+                  />
+                </span>
+                <figcaption class="text-sm text-muted">Diyagram</figcaption>
+              </figure>
+              <figure class="flex flex-col gap-2">
+                <span
+                  class="block w-full overflow-hidden rounded-xl border border-line bg-preview"
+                  style="aspect-ratio: 210 / 297"
+                >
+                  <img
+                    src="../../assets/features/geometry.webp"
+                    alt="İç ve dış açıları işaretlenmiş bir üçgen çizimi"
+                    width="420"
+                    height="594"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-contain"
+                  />
+                </span>
+                <figcaption class="text-sm text-muted">Geometrik çizim</figcaption>
+              </figure>
+              <figure class="flex flex-col gap-2">
+                <span
+                  class="block w-full overflow-hidden rounded-xl border border-line bg-preview"
+                  style="aspect-ratio: 210 / 297"
+                >
+                  <img
+                    src="../../assets/features/illustration.webp"
+                    alt="Gen lokuslarıyla etiketlenmiş kromozomların yapay zekâ görseli"
+                    width="420"
+                    height="594"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-contain"
+                  />
+                </span>
+                <figcaption class="text-sm text-muted">Yapay zekâ görseli</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <!-- Charts -->
+        <section class="w-full border-t border-line bg-page">
+          <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-14">
+            <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">25 grafik türü</h2>
+            <p class="mt-3 max-w-2xl text-muted">
+              Veri sayfaya kendi ekseni, lejantı ve etiketleriyle gerçek bir grafik
+              olarak yazılıyor; baskıda keskin çıkıyor, sayfanın temasına uyuyor.
+            </p>
+            <ul class="mt-6 flex flex-wrap gap-2">
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Sütun</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Çizgi</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Çoklu çizgi</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Alan</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Saçılım</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Kabarcık</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Histogram</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Isı haritası</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Pasta</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Halka</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Kutupsal alan</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Radar</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Yığılmış sütun</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Gruplu sütun</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Yığılmış alan</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Lolipop</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Kutu grafiği</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Huni</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Şelale</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Ağaç haritası</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Sunburst</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Gösterge</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Bullet</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Mum grafiği</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Sütun ve çizgi birlikte</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Diagrams -->
+        <section class="w-full border-t border-line bg-alt">
+          <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-14">
+            <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">17 diyagram türü</h2>
+            <p class="mt-3 max-w-2xl text-muted">
+              Süreçler, planlar ve fikirler diyagrama dönüşüyor: proje için kanban
+              panosu, konu için zihin haritası, tarih dersi için zaman çizelgesi,
+              takvim için gantt, bir şeyin nereye aktığını gösteren sankey.
+            </p>
+            <ul class="mt-6 flex flex-wrap gap-2">
+              <li class="rounded-full border border-line bg-brand-soft px-3 py-1.5 text-sm font-medium text-brand-fg">Kanban</li>
+              <li class="rounded-full border border-line bg-brand-soft px-3 py-1.5 text-sm font-medium text-brand-fg">Zihin haritası</li>
+              <li class="rounded-full border border-line bg-brand-soft px-3 py-1.5 text-sm font-medium text-brand-fg">Zaman çizelgesi</li>
+              <li class="rounded-full border border-line bg-brand-soft px-3 py-1.5 text-sm font-medium text-brand-fg">Gantt</li>
+              <li class="rounded-full border border-line bg-brand-soft px-3 py-1.5 text-sm font-medium text-brand-fg">Sankey</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Akış şeması</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Sıralı etkileşim</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Varlık-ilişki</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Sınıf</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Durum</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Pasta</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Kullanıcı yolculuğu</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Dört bölgeli matris</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Git grafiği</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">C4 mimari</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Blok</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">XY grafiği</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Geometry, math and the rest -->
+        <section class="w-full border-t border-line bg-page">
+          <div class="mx-auto grid max-w-5xl gap-6 px-4 py-12 sm:px-6 sm:py-14 md:grid-cols-2">
+            <div class="rounded-2xl border border-line bg-elevated shadow-card p-6">
+              <h2 class="text-xl font-bold tracking-tight">Geometri ve matematik</h2>
+              <p class="mt-2 text-muted">
+                Şekiller göz kararı değil, hesaplanarak çiziliyor: açılar toplanıyor,
+                teğet eğriye değiyor, nokta doğrunun üstünde duruyor.
+              </p>
+              <ul class="mt-4 flex flex-wrap gap-2">
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Açılar</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Yay ve daire dilimi</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Çokgen ve çember</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Koordinat düzlemi</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Eğri ve teğet</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Dönüşümler</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">TikZ çizimleri</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">LaTeX formüller</li>
+              </ul>
+            </div>
+            <div class="rounded-2xl border border-line bg-elevated shadow-card p-6">
+              <h2 class="text-xl font-bold tracking-tight">Sayfadaki diğer her şey</h2>
+              <p class="mt-2 text-muted">
+                Aynı yerleşim motoru metni, sayfanın ihtiyacı olan her şeyin etrafına
+                diziyor.
+              </p>
+              <ul class="mt-4 flex flex-wrap gap-2">
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Yapay zekâ görselleri</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Renklendirilmiş kod</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Tablolar</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Bilgi kutuları</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">İkonlar</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Renk geçişleri ve temalar</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Two surfaces -->
+        <section class="w-full border-t border-line bg-alt">
+          <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-14">
+            <h2 class="text-center text-2xl font-bold tracking-tight sm:text-3xl">
+              İki çeşit sayfa
+            </h2>
+            <div class="mt-8 grid gap-6 md:grid-cols-2">
+              <div class="rounded-2xl border border-line bg-elevated shadow-card p-6">
+                <h3 class="text-lg font-semibold">Doküman</h3>
+                <p class="mt-2 text-muted">
+                  Sabit, yazdırılabilir sayfalar — A4, A3, A5 ya da 16:9 slayt. Metin
+                  ölçülüp sayfalanıyor; 50 sayfalık bir konu anlatımı ekranda nasıl
+                  okunuyorsa baskıda da öyle çıkıyor.
+                </p>
+              </div>
+              <div class="rounded-2xl border border-line bg-brand-soft shadow-card p-6">
+                <h3 class="text-lg font-semibold">Canvas</h3>
+                <p class="mt-2 text-muted">
+                  1440 genişliğinde, içeriğe göre uzayan serbest bir sahne. Tek bir
+                  fikir 25 sahnelik bir seriye dönüşüyor: Çanakkale bir Nolan filmi
+                  storyboard'u gibi, CRISPR bir IKEA kılavuzu gibi, Türkiye illeri
+                  Pokémon kartları gibi.
+                </p>
+                <a
+                  href="https://github.com/Tasvir-app/Tasvir-Canvas-Mode-TR"
+                  class="mt-4 inline-flex h-11 items-center gap-1 text-sm font-medium text-brand-fg transition hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                  >Canvas vitrinine bak &rarr;</a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Closing CTA -->
+        <section class="w-full border-t border-line bg-page">
+          <div
+            class="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-12 text-center sm:px-6 sm:py-14"
+          >
+            <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">
+              Konuyu anlat, görselleri Tasvir seçsin.
+            </h2>
+            <a
+              href="https://app.tasvir.ai/signup"
+              data-app-link
+              data-cta="features-footer"
+              class="inline-flex h-14 items-center justify-center rounded-full bg-brand px-8 text-base font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-page"
+            >
+              İlk dokümanını ücretsiz oluştur
+            </a>
+            <a
+              href="/tr/"
+              class="inline-flex h-11 items-center text-sm text-muted transition hover:text-ink"
+              >&larr; Ana sayfaya dön</a
+            >
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="w-full border-t border-line">
+        <div
+          class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-muted sm:flex-row sm:px-6"
+        >
+          <p>&copy; <span id="year">2026</span> Tasvir</p>
+          <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+            <a
+              href="mailto:support@tasvir.ai"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
+              >İletişim</a
+            >
+            <a
+              href="https://app.tasvir.ai/privacy"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
+              >Gizlilik Politikası</a
+            >
+            <a
+              href="https://app.tasvir.ai/terms"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
+              >Kullanım Şartları</a
+            >
+            <a
+              href="https://app.tasvir.ai/kvkk"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
+              >KVKK Aydınlatma Metni</a
+            >
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        var LANG = "tr";
+
+        function track(event, props) {
+          try {
+            if (typeof window.plausible === "function") {
+              window.plausible(event, { props: props });
+            }
+            if (typeof window.gtag === "function") {
+              window.gtag("event", event, props);
+            }
+            if (window.dataLayer && typeof window.dataLayer.push === "function") {
+              window.dataLayer.push(Object.assign({ event: event }, props));
+            }
+          } catch (e) {}
+        }
+
+        var params = new URLSearchParams(window.location.search);
+        document.querySelectorAll("[data-app-link]").forEach(function (link) {
+          var url = new URL(link.href);
+          url.searchParams.set("src", "landing-features-tr");
+          url.searchParams.set("cta", link.getAttribute("data-cta") || "unknown");
+          url.searchParams.set("lang", LANG);
+          ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(
+            function (key) {
+              var value = params.get(key);
+              if (value) url.searchParams.set(key, value);
+            }
+          );
+          link.href = url.toString();
+
+          link.addEventListener("click", function () {
+            track("cta_clicked", {
+              cta: link.getAttribute("data-cta") || "unknown",
+              lang: LANG,
+            });
+          });
+        });
+
+        var yearEl = document.getElementById("year");
+        if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+        track("features_view", { lang: LANG });
+      })();
+    </script>
+    <script src="../../theme.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("tasvir:theme") === "dark") {
+            document.documentElement.classList.add("dark");
+            document.documentElement.style.colorScheme = "dark";
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>What Tasvir can draw — charts, diagrams, geometry and AI illustrations</title>
+    <meta
+      name="description"
+      content="25 chart types, 17 diagram types including kanban, mindmap, timeline and gantt, geometric drawings, LaTeX formulas, code blocks and AI illustrations — every visual is drawn for the page it sits on, in A4 documents or free canvas series."
+    />
+    <link rel="canonical" href="https://tasvir.ai/features/" />
+    <link rel="alternate" hreflang="en" href="https://tasvir.ai/features/" />
+    <link rel="alternate" hreflang="tr" href="https://tasvir.ai/tr/ozellikler/" />
+    <link rel="alternate" hreflang="x-default" href="https://tasvir.ai/features/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!--
+      Turkish-first for a visitor in Turkey. GitHub Pages cannot see IP country,
+      so the signals are Istanbul timezone, any Turkish language, and the OS
+      locale. This runs in <head> so the English page never flashes. Googlebot
+      crawls with en-US / a non-Istanbul timezone, so the English URL stays
+      reachable. An explicit EN click (?lang=en) is remembered for this tab
+      only; the next visit from Turkey still opens /tr/.
+    -->
+    <script>
+      (function () {
+        var KEY = "tasvir:lang-pref";
+        var session = null;
+        var store = null;
+        try {
+          session = window.sessionStorage;
+        } catch (e) {}
+        try {
+          store = window.localStorage;
+        } catch (e) {}
+
+        function readSession() {
+          try {
+            return (session && session.getItem(KEY)) || "";
+          } catch (e) {
+            return "";
+          }
+        }
+
+        var langParam = "";
+        try {
+          langParam = new URLSearchParams(window.location.search).get("lang") || "";
+        } catch (e) {}
+
+        if (langParam === "en") {
+          try {
+            session && session.setItem(KEY, "en");
+          } catch (e) {}
+          try {
+            store && store.removeItem(KEY);
+          } catch (e) {}
+          return;
+        }
+
+        if (readSession() === "en") return;
+
+        try {
+          store && store.removeItem(KEY);
+        } catch (e) {}
+
+        var tz = "";
+        var locale = "";
+        try {
+          var resolved = Intl.DateTimeFormat().resolvedOptions();
+          tz = String(resolved.timeZone || "").toLowerCase();
+          locale = String(resolved.locale || "").toLowerCase().replace(/_/g, "-");
+        } catch (e) {}
+
+        var inTurkey =
+          tz === "europe/istanbul" ||
+          tz === "asia/istanbul" ||
+          tz === "turkey" ||
+          tz.indexOf("istanbul") !== -1;
+
+        function isTurkishTag(tag) {
+          var l = String(tag || "").toLowerCase().replace(/_/g, "-");
+          return l === "tr" || l.indexOf("tr-") === 0;
+        }
+
+        var turkishLang = isTurkishTag(locale);
+        try {
+          var langs = navigator.languages || [];
+          for (var i = 0; i < langs.length; i++) {
+            if (isTurkishTag(langs[i])) {
+              turkishLang = true;
+              break;
+            }
+          }
+          if (!turkishLang) turkishLang = isTurkishTag(navigator.language);
+        } catch (e) {}
+
+        if (inTurkey || turkishLang) {
+          window.location.replace("/tr/ozellikler/" + window.location.search);
+        }
+      })();
+    </script>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tasvir" />
+    <meta property="og:title" content="What Tasvir can draw" />
+    <meta
+      property="og:description"
+      content="25 chart types, 17 diagram types, geometry, LaTeX, code and AI illustrations — drawn for the page they sit on."
+    />
+    <meta property="og:url" content="https://tasvir.ai/features/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="tr_TR" />
+    <meta property="og:image" content="https://tasvir.ai/assets/og-card.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="What Tasvir can draw" />
+    <meta
+      name="twitter:description"
+      content="25 chart types, 17 diagram types, geometry, LaTeX, code and AI illustrations."
+    />
+    <meta name="twitter:image" content="https://tasvir.ai/assets/og-card.jpg" />
+
+    <link rel="icon" type="image/svg+xml" href="../icon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+
+  <body class="min-h-[100svh] bg-page font-sans text-ink antialiased">
+    <div class="flex min-h-[100svh] flex-col">
+      <!-- Header -->
+      <header class="sticky top-0 z-20 w-full border-b border-line bg-page/90 pt-[env(safe-area-inset-top)] backdrop-blur-md">
+        <nav
+          class="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:gap-4 sm:px-6"
+        >
+          <a href="/" class="flex min-h-11 items-center gap-2" aria-label="Tasvir home">
+            <img
+              src="../icon.svg"
+              alt="Tasvir logo"
+              width="32"
+              height="32"
+              class="h-8 w-8 rounded-lg"
+            />
+            <span class="hidden text-lg font-bold tracking-tight min-[400px]:inline">Tasvir</span>
+          </a>
+
+          <div class="flex items-center gap-1.5 sm:gap-3">
+            <button
+              type="button"
+              data-theme-toggle
+              data-label-dark="Switch to dark mode"
+              data-label-light="Switch to light mode"
+              aria-pressed="false"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-elevated text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+            >
+              <svg class="theme-moon h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M21 14.3A8.5 8.5 0 0 1 9.7 3 7 7 0 1 0 21 14.3z" />
+              </svg>
+              <svg class="theme-sun h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+              </svg>
+            </button>
+            <!--
+              Turkish lives at its own URL, so the switch is a link a crawler can
+              follow rather than an in-place text swap.
+            -->
+            <a
+              href="/tr/ozellikler/"
+              hreflang="tr"
+              class="inline-flex h-11 min-w-11 items-center justify-center rounded-full border border-line bg-elevated px-3 text-sm font-medium text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              >TR</a
+            >
+
+            <a
+              href="https://app.tasvir.ai/signin"
+              data-app-link
+              data-cta="header-signin"
+              class="hidden h-11 items-center rounded-full px-4 text-sm font-medium text-ink transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:inline-flex"
+              >Sign in</a
+            >
+            <a
+              href="https://app.tasvir.ai/signup"
+              data-app-link
+              data-cta="header"
+              class="inline-flex h-11 items-center rounded-full bg-brand px-3 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:px-4"
+              >Start free</a
+            >
+          </div>
+        </nav>
+      </header>
+
+      <main class="w-full">
+        <!-- Hero -->
+        <div
+          class="mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 py-10 text-center sm:px-6 sm:py-14"
+        >
+          <h1
+            class="max-w-3xl text-[clamp(1.75rem,1.1rem_+_3.2vw,3rem)] font-extrabold leading-tight tracking-tight"
+          >
+            Every visual is drawn for the page it sits on.
+          </h1>
+          <p class="max-w-2xl text-base text-muted sm:text-lg">
+            Tasvir does not paste stock pictures. For each page it picks the visual
+            the idea needs — a chart, a diagram, a geometric drawing, a formula or
+            an AI illustration — and lays it out with the text.
+          </p>
+          <ul class="grid w-full max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-4">
+              <p class="text-3xl font-extrabold text-ink">25</p>
+              <p class="mt-1 text-sm text-muted">chart types</p>
+            </li>
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-4">
+              <p class="text-3xl font-extrabold text-ink">17</p>
+              <p class="mt-1 text-sm text-muted">diagram types</p>
+            </li>
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-4">
+              <p class="text-3xl font-extrabold text-ink">LaTeX</p>
+              <p class="mt-1 text-sm text-muted">geometry and formulas</p>
+            </li>
+            <li class="rounded-2xl border border-line bg-elevated shadow-card p-4">
+              <p class="text-3xl font-extrabold text-ink">AI</p>
+              <p class="mt-1 text-sm text-muted">illustrations per page</p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Real pages -->
+        <section class="w-full border-t border-line bg-alt">
+          <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
+            <h2 class="text-center text-2xl font-bold tracking-tight sm:text-3xl">
+              Taken from real documents
+            </h2>
+            <p class="mx-auto mt-3 max-w-2xl text-center text-muted">
+              Each of these is the first page of a document Tasvir generated from a
+              single sentence.
+            </p>
+            <div class="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+              <figure class="flex flex-col gap-2">
+                <span
+                  class="block w-full overflow-hidden rounded-xl border border-line bg-preview"
+                  style="aspect-ratio: 210 / 297"
+                >
+                  <img
+                    src="../assets/features/charts.webp"
+                    alt="A function graph with a secant turning into a tangent, next to LaTeX formulas"
+                    width="420"
+                    height="594"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-contain"
+                  />
+                </span>
+                <figcaption class="text-sm text-muted">Plots and formulas</figcaption>
+              </figure>
+              <figure class="flex flex-col gap-2">
+                <span
+                  class="block w-full overflow-hidden rounded-xl border border-line bg-preview"
+                  style="aspect-ratio: 210 / 297"
+                >
+                  <img
+                    src="../assets/features/diagrams.webp"
+                    alt="A flow diagram of number sets, from natural to rational numbers"
+                    width="420"
+                    height="594"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-contain"
+                  />
+                </span>
+                <figcaption class="text-sm text-muted">Diagrams</figcaption>
+              </figure>
+              <figure class="flex flex-col gap-2">
+                <span
+                  class="block w-full overflow-hidden rounded-xl border border-line bg-preview"
+                  style="aspect-ratio: 210 / 297"
+                >
+                  <img
+                    src="../assets/features/geometry.webp"
+                    alt="A triangle drawn with its interior and exterior angles labelled"
+                    width="420"
+                    height="594"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-contain"
+                  />
+                </span>
+                <figcaption class="text-sm text-muted">Geometric drawings</figcaption>
+              </figure>
+              <figure class="flex flex-col gap-2">
+                <span
+                  class="block w-full overflow-hidden rounded-xl border border-line bg-preview"
+                  style="aspect-ratio: 210 / 297"
+                >
+                  <img
+                    src="../assets/features/illustration.webp"
+                    alt="An AI illustration of chromosomes tagged with gene loci"
+                    width="420"
+                    height="594"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-contain"
+                  />
+                </span>
+                <figcaption class="text-sm text-muted">AI illustrations</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <!-- Charts -->
+        <section class="w-full border-t border-line bg-page">
+          <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-14">
+            <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">25 chart types</h2>
+            <p class="mt-3 max-w-2xl text-muted">
+              Data is written into the page as a real chart with its own axes,
+              legend and labels, so it prints sharp and matches the page theme.
+            </p>
+            <ul class="mt-6 flex flex-wrap gap-2">
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Bar</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Line</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Multi-line</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Area</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Scatter</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Bubble</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Histogram</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Heatmap</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Pie</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Donut</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Polar area</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Radar</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Stacked bar</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Grouped bar</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Stacked area</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Lollipop</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Box plot</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Funnel</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Waterfall</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Treemap</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Sunburst</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Gauge</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Bullet</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Candlestick</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Bar and line combo</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Diagrams -->
+        <section class="w-full border-t border-line bg-alt">
+          <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-14">
+            <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">17 diagram types</h2>
+            <p class="mt-3 max-w-2xl text-muted">
+              Processes, plans and ideas become diagrams: a kanban board for a
+              project, a mindmap for a topic, a timeline for a history lesson, a
+              gantt chart for a schedule, a sankey for where things flow.
+            </p>
+            <ul class="mt-6 flex flex-wrap gap-2">
+              <li class="rounded-full border border-line bg-brand-soft px-3 py-1.5 text-sm font-medium text-brand-fg">Kanban</li>
+              <li class="rounded-full border border-line bg-brand-soft px-3 py-1.5 text-sm font-medium text-brand-fg">Mindmap</li>
+              <li class="rounded-full border border-line bg-brand-soft px-3 py-1.5 text-sm font-medium text-brand-fg">Timeline</li>
+              <li class="rounded-full border border-line bg-brand-soft px-3 py-1.5 text-sm font-medium text-brand-fg">Gantt</li>
+              <li class="rounded-full border border-line bg-brand-soft px-3 py-1.5 text-sm font-medium text-brand-fg">Sankey</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Flowchart</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Sequence</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Entity relationship</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Class</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">State</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Pie</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">User journey</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Quadrant</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Git graph</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">C4 architecture</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">Block</li>
+              <li class="rounded-full border border-line bg-elevated shadow-card px-3 py-1.5 text-sm text-ink">XY chart</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Geometry, math and the rest -->
+        <section class="w-full border-t border-line bg-page">
+          <div class="mx-auto grid max-w-5xl gap-6 px-4 py-12 sm:px-6 sm:py-14 md:grid-cols-2">
+            <div class="rounded-2xl border border-line bg-elevated shadow-card p-6">
+              <h2 class="text-xl font-bold tracking-tight">Geometry and math</h2>
+              <p class="mt-2 text-muted">
+                Figures are computed, not sketched: the angles add up, the tangent
+                touches the curve, the point sits on the line.
+              </p>
+              <ul class="mt-4 flex flex-wrap gap-2">
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Angles</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Arcs and sectors</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Polygons and circles</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Coordinate plane</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Curves and tangents</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Transformations</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">TikZ drawings</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">LaTeX formulas</li>
+              </ul>
+            </div>
+            <div class="rounded-2xl border border-line bg-elevated shadow-card p-6">
+              <h2 class="text-xl font-bold tracking-tight">Everything else on the page</h2>
+              <p class="mt-2 text-muted">
+                The same layout engine places the text around whatever the page
+                needs.
+              </p>
+              <ul class="mt-4 flex flex-wrap gap-2">
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">AI illustrations</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Syntax-highlighted code</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Tables</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Callout boxes</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Icons</li>
+                <li class="rounded-full border border-line px-3 py-1.5 text-sm text-ink">Gradients and themes</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Two surfaces -->
+        <section class="w-full border-t border-line bg-alt">
+          <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-14">
+            <h2 class="text-center text-2xl font-bold tracking-tight sm:text-3xl">
+              Two kinds of page
+            </h2>
+            <div class="mt-8 grid gap-6 md:grid-cols-2">
+              <div class="rounded-2xl border border-line bg-elevated shadow-card p-6">
+                <h3 class="text-lg font-semibold">Documents</h3>
+                <p class="mt-2 text-muted">
+                  Fixed, printable pages — A4, A3, A5 or 16:9 slides. The text is
+                  measured and paginated so a 50-page study guide prints the way it
+                  reads on screen.
+                </p>
+              </div>
+              <div class="rounded-2xl border border-line bg-brand-soft shadow-card p-6">
+                <h3 class="text-lg font-semibold">Canvas</h3>
+                <p class="mt-2 text-muted">
+                  A free, 1440-wide scene that grows to fit. Turn one idea into a
+                  series of up to 25 scenes: a history told as a film storyboard, a
+                  science topic as an IKEA manual, a city as a Pokémon card set.
+                </p>
+                <a
+                  href="https://github.com/Tasvir-app/Tasvir-Canvas-Mode"
+                  class="mt-4 inline-flex h-11 items-center gap-1 text-sm font-medium text-brand-fg transition hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                  >See the canvas showcase &rarr;</a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Closing CTA -->
+        <section class="w-full border-t border-line bg-page">
+          <div
+            class="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-12 text-center sm:px-6 sm:py-14"
+          >
+            <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">
+              Describe the topic. Tasvir picks the visuals.
+            </h2>
+            <a
+              href="https://app.tasvir.ai/signup"
+              data-app-link
+              data-cta="features-footer"
+              class="inline-flex h-14 items-center justify-center rounded-full bg-brand px-8 text-base font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-page"
+            >
+              Create your first document — free
+            </a>
+            <a
+              href="/"
+              class="inline-flex h-11 items-center text-sm text-muted transition hover:text-ink"
+              >&larr; Back to the home page</a
+            >
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="w-full border-t border-line">
+        <div
+          class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-muted sm:flex-row sm:px-6"
+        >
+          <p>&copy; <span id="year">2026</span> Tasvir</p>
+          <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+            <a
+              href="mailto:support@tasvir.ai"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
+              >Contact</a
+            >
+            <a
+              href="https://app.tasvir.ai/privacy"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
+              >Privacy Policy</a
+            >
+            <a
+              href="https://app.tasvir.ai/terms"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
+              >Terms of Use</a
+            >
+            <a
+              href="https://app.tasvir.ai/kvkk"
+              class="inline-flex h-11 items-center rounded-full px-3 transition hover:text-ink"
+              >KVKK Notice</a
+            >
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        var LANG = "en";
+
+        function track(event, props) {
+          try {
+            if (typeof window.plausible === "function") {
+              window.plausible(event, { props: props });
+            }
+            if (typeof window.gtag === "function") {
+              window.gtag("event", event, props);
+            }
+            if (window.dataLayer && typeof window.dataLayer.push === "function") {
+              window.dataLayer.push(Object.assign({ event: event }, props));
+            }
+          } catch (e) {}
+        }
+
+        var params = new URLSearchParams(window.location.search);
+        document.querySelectorAll("[data-app-link]").forEach(function (link) {
+          var url = new URL(link.href);
+          url.searchParams.set("src", "landing-features");
+          url.searchParams.set("cta", link.getAttribute("data-cta") || "unknown");
+          url.searchParams.set("lang", LANG);
+          ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(
+            function (key) {
+              var value = params.get(key);
+              if (value) url.searchParams.set(key, value);
+            }
+          );
+          link.href = url.toString();
+
+          link.addEventListener("click", function () {
+            track("cta_clicked", {
+              cta: link.getAttribute("data-cta") || "unknown",
+              lang: LANG,
+            });
+          });
+        });
+
+        var yearEl = document.getElementById("year");
+        if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+        track("features_view", { lang: LANG });
+      })();
+    </script>
+    <script src="../theme.js" defer></script>
+  </body>
+</html>
