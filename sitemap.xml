@@ -40,6 +40,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://tasvir.ai/organizations/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tasvir.ai/organizations/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://tasvir.ai/tr/kurumlar/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tasvir.ai/organizations/" />
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tasvir.ai/tr/kurumlar/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tasvir.ai/organizations/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://tasvir.ai/tr/kurumlar/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tasvir.ai/organizations/" />
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://tasvir.ai/tr/yks/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>

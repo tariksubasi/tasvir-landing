@@ -7,6 +7,8 @@ module.exports = {
     "./tr/index.html",
     "./tr/yks/index.html",
     "./tr/ozellikler/index.html",
+    "./organizations/index.html",
+    "./tr/kurumlar/index.html",
   ],
   theme: {
     extend: {
