@@ -62,27 +62,27 @@
       <!-- Header -->
       <header class="sticky top-0 z-20 w-full border-b border-line bg-page/90 pt-[env(safe-area-inset-top)] backdrop-blur-md">
         <nav
-          class="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:gap-4 sm:px-6"
+          class="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:px-6 [@media(max-height:500px)]:py-1.5"
+          aria-label="Ana menü"
         >
-          <a href="/tr/" class="flex min-h-11 items-center gap-2" aria-label="Tasvir ana sayfa">
-            <img
-              src="../../icon.svg"
-              alt="Tasvir logosu"
-              width="32"
-              height="32"
-              class="h-8 w-8 rounded-lg"
-            />
-            <span class="hidden text-lg font-bold tracking-tight min-[400px]:inline">Tasvir</span>
-          </a>
+          <div class="flex min-w-0 items-center gap-1">
+            <a href="/tr/" class="mr-2 flex min-h-11 shrink-0 items-center gap-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand" aria-label="Tasvir ana sayfa">
+              <img src="../../icon.svg" alt="" width="32" height="32" class="h-8 w-8 rounded-lg" />
+              <span class="hidden text-lg font-bold tracking-tight min-[400px]:inline">Tasvir</span>
+            </a>
+            <a href="/tr/ozellikler/" class="hidden h-11 items-center rounded-full px-3 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand lg:inline-flex text-muted hover:bg-soft hover:text-ink">Özellikler</a>
+            <a href="/tr/kurumlar/" class="hidden h-11 items-center rounded-full px-3 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand lg:inline-flex bg-brand-soft text-brand-fg" aria-current="page">Kurumlar için</a>
+          </div>
 
-          <div class="flex items-center gap-1.5 sm:gap-3">
+          <div class="flex shrink-0 items-center gap-1.5 sm:gap-2">
+            <a href="/organizations/?lang=en" hreflang="en" lang="en" aria-label="English" class="inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-line bg-elevated text-sm font-semibold text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand">EN</a>
             <button
               type="button"
               data-theme-toggle
               data-label-dark="Koyu görünüme geç"
               data-label-light="Açık görünüme geç"
               aria-pressed="false"
-              class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-elevated text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              class="inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-line bg-elevated text-sm font-semibold text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <svg class="theme-moon h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M21 14.3A8.5 8.5 0 0 1 9.7 3 7 7 0 1 0 21 14.3z" />
@@ -93,27 +93,36 @@
               </svg>
             </button>
             <a
-              href="/organizations/?lang=en"
-              hreflang="en"
-              class="inline-flex h-11 min-w-11 items-center justify-center rounded-full border border-line bg-elevated px-3 text-sm font-medium text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-              >EN</a
-            >
-            <a
               href="https://app.tasvir.ai/signin?next=/organization"
               data-app-link
               data-cta="org-header-signin"
-              class="hidden h-11 items-center rounded-full px-4 text-sm font-medium text-ink transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:inline-flex"
+              class="hidden h-11 items-center rounded-full px-3 text-sm font-medium text-ink transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:inline-flex"
               >Giriş yap</a
             >
             <a
               href="https://app.tasvir.ai/signup?next=/organization"
               data-app-link
               data-cta="org-header"
-              class="inline-flex h-11 items-center rounded-full bg-brand px-3 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:px-4"
+              class="inline-flex h-11 shrink-0 items-center rounded-full bg-brand px-4 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-page"
             >
               <span class="sm:hidden">Başla</span>
               <span class="hidden sm:inline">Kurum hesabı oluştur</span>
             </a>
+            <details class="nav-menu relative lg:hidden" data-nav-menu>
+              <summary class="inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-line bg-elevated text-sm font-semibold text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand list-none [&::-webkit-details-marker]:hidden" aria-label="Menü">
+                <svg class="nav-icon-open h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                  <path d="M4 7h16M4 12h16M4 17h16" />
+                </svg>
+                <svg class="nav-icon-close h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                  <path d="M6 6l12 12M18 6 6 18" />
+                </svg>
+              </summary>
+              <div class="absolute right-0 top-full mt-3 flex w-64 max-w-[calc(100vw-2rem)] flex-col gap-1 rounded-2xl border border-line bg-elevated p-2 shadow-lift">
+                <a href="/tr/ozellikler/" class="flex min-h-11 items-center rounded-xl px-3 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand  text-ink hover:bg-soft">Özellikler</a>
+                <a href="/tr/kurumlar/" class="flex min-h-11 items-center rounded-xl px-3 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand  bg-brand-soft text-brand-fg" aria-current="page">Kurumlar için</a>
+                <a href="https://app.tasvir.ai/signin?next=/organization" data-app-link data-cta="org-header-menu-signin" class="flex min-h-11 items-center rounded-xl px-3 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:hidden text-ink hover:bg-soft">Giriş yap</a>
+              </div>
+            </details>
           </div>
         </nav>
       </header>

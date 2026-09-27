@@ -15,14 +15,15 @@
   --c-soft: #e8eaed;
   --c-ink: #1f1f1f;
   --c-muted: #5f6368;
-  --c-line: rgba(31, 31, 31, 0.08);
+  --c-line: rgba(31, 31, 31, 0.1);
   --c-preview: #e8eaed;
   --c-brand: #5865f2;
   --c-brand-dark: #4752c4;
   --c-brand-fg: #4752c4;
   --c-brand-soft: #e3e5fc;
-  --shadow-card: 0 4px 18px -8px rgba(31, 31, 31, 0.16);
-  --shadow-lift: 0 12px 32px -16px rgba(31, 31, 31, 0.22);
+  /* Two soft layers (contact + ambient) so white cards stay distinct on a white section. */
+  --shadow-card: 0 1px 2px rgba(31, 31, 31, 0.06), 0 4px 14px -4px rgba(31, 31, 31, 0.12);
+  --shadow-lift: 0 2px 6px rgba(31, 31, 31, 0.06), 0 16px 36px -12px rgba(31, 31, 31, 0.22);
 }
 
 html.dark {
@@ -33,14 +34,14 @@ html.dark {
   --c-soft: #333537;
   --c-ink: #e3e3e3;
   --c-muted: #9aa0a6;
-  --c-line: rgba(255, 255, 255, 0.08);
+  --c-line: rgba(255, 255, 255, 0.1);
   --c-preview: #131314;
   --c-brand: #5865f2;
   --c-brand-dark: #4752c4;
   --c-brand-fg: #a5b4fc;
   --c-brand-soft: #2d3748;
-  --shadow-card: 0 8px 24px -12px rgba(0, 0, 0, 0.45);
-  --shadow-lift: 0 16px 40px -16px rgba(0, 0, 0, 0.55);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px -6px rgba(0, 0, 0, 0.5);
+  --shadow-lift: 0 2px 8px rgba(0, 0, 0, 0.35), 0 20px 44px -16px rgba(0, 0, 0, 0.65);
 }
 
 @layer base {
@@ -121,5 +122,19 @@ html.dark {
 
   html.dark .theme-sun {
     display: block;
+  }
+
+  .nav-menu[open] .nav-icon-open,
+  .nav-menu:not([open]) .nav-icon-close {
+    display: none;
+  }
+
+  /* The YouTube poster has a light backdrop baked in; dim it so it does not glare on dark. */
+  html.dark #video-frame img {
+    opacity: 0.35;
+  }
+
+  html.dark #video-frame button:hover img {
+    opacity: 0.85;
   }
 }

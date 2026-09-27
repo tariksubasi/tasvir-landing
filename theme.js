@@ -20,7 +20,48 @@
     });
   }
 
+  // <details> opens and closes by itself; this only adds the closing paths a
+  // menu is expected to have (outside tap, Escape, choosing a link).
+  function initMenus() {
+    var menus = document.querySelectorAll("[data-nav-menu]");
+    if (!menus.length) return;
+
+    function sync(menu) {
+      var summary = menu.querySelector("summary");
+      if (summary) summary.setAttribute("aria-expanded", menu.open ? "true" : "false");
+    }
+
+    menus.forEach(function (menu) {
+      sync(menu);
+      menu.addEventListener("toggle", function () {
+        sync(menu);
+      });
+      menu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          menu.open = false;
+        });
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      menus.forEach(function (menu) {
+        if (menu.open && !menu.contains(event.target)) menu.open = false;
+      });
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key !== "Escape") return;
+      menus.forEach(function (menu) {
+        if (!menu.open) return;
+        menu.open = false;
+        var summary = menu.querySelector("summary");
+        if (summary) summary.focus();
+      });
+    });
+  }
+
   function init() {
+    initMenus();
     var stored = null;
     try {
       stored = window.localStorage.getItem(KEY);
