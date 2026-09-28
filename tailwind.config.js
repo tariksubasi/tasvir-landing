@@ -9,6 +9,7 @@ module.exports = {
     "./tr/ozellikler/index.html",
     "./organizations/index.html",
     "./tr/kurumlar/index.html",
+    "./contact.js",
   ],
   theme: {
     extend: {
