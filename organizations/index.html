@@ -174,7 +174,7 @@
               data-cta="org-header"
               class="inline-flex h-11 shrink-0 items-center rounded-full bg-brand px-4 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-page"
             >
-              <span class="sm:hidden">Start</span>
+              <span class="sm:hidden">Open one</span>
               <span class="hidden sm:inline">Create an organization</span>
             </a>
             <details class="nav-menu relative lg:hidden" data-nav-menu>
@@ -224,10 +224,10 @@
               >Create an organization</a
             >
             <a
-              href="mailto:support@tasvir.ai?subject=Organization%20quote%20request&body=Organization%20name%3A%0ANumber%20of%20users%3A%0APayment%20preference%20(card%20%2F%20bank%20transfer%20%2F%20invoice)%3A%0APhone%3A"
+              href="#quote"
               data-track="org-hero-quote"
               class="inline-flex h-14 w-full items-center justify-center rounded-full border border-line bg-elevated px-8 text-base font-semibold text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-auto"
-              >Ask for a quote or pilot</a
+              >Ask for a free pilot or quote</a
             >
           </div>
           <p class="text-sm text-muted">
@@ -385,25 +385,81 @@
               <div class="rounded-2xl border border-line bg-elevated shadow-card p-6 text-center">
                 <p class="text-sm text-muted">10,000 credits</p>
                 <p class="mt-2 text-3xl font-extrabold text-ink">$89.99</p>
+                <p class="mt-2 text-sm font-medium text-ink">≈ 270–2,000 document pages</p>
               </div>
               <div class="rounded-2xl border-2 border-brand bg-elevated shadow-card p-6 text-center">
                 <p class="text-sm text-muted">30,000 credits</p>
                 <p class="mt-2 text-3xl font-extrabold text-ink">$264.99</p>
+                <p class="mt-2 text-sm font-medium text-ink">≈ 810–6,000 document pages</p>
               </div>
               <div class="rounded-2xl border border-line bg-elevated shadow-card p-6 text-center">
                 <p class="text-sm text-muted">100,000 credits</p>
                 <p class="mt-2 text-3xl font-extrabold text-ink">$869.99</p>
+                <p class="mt-2 text-sm font-medium text-ink">≈ 2,700–20,000 document pages</p>
               </div>
             </div>
+            <p class="mx-auto mt-4 max-w-2xl text-center text-sm text-muted">
+              Page counts depend on the quality and visuals you pick: plain pages sit
+              near the top of the range, pages with AI images near the bottom. For
+              example, 30,000 credits cover 30 teachers each making 10 illustrated
+              pages in a term.
+            </p>
             <p class="mt-6 text-center text-sm text-muted">
-              For bank transfer, invoicing, a pilot or a custom quote, email
+              For bank transfer, invoicing, a pilot or a custom quote,
               <a
-                href="mailto:support@tasvir.ai?subject=Organization%20quote%20request&body=Organization%20name%3A%0ANumber%20of%20users%3A%0APayment%20preference%20(card%20%2F%20bank%20transfer%20%2F%20invoice)%3A%0APhone%3A"
+                href="#quote"
                 data-track="org-pricing-quote"
                 class="font-semibold text-brand-fg underline hover:text-ink"
-                >support@tasvir.ai</a
-              >.
+                >fill in the form</a
+              >
+              or email support@tasvir.ai.
             </p>
+          </div>
+        </section>
+
+        <!-- Quote / pilot request -->
+        <section id="quote" class="w-full scroll-mt-20 border-t border-line bg-page">
+          <div class="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-14">
+            <h2 class="text-center text-2xl font-bold tracking-tight sm:text-3xl">Ask for a free pilot or a quote</h2>
+            <p class="mx-auto mt-3 max-w-xl text-center text-muted">
+              Try it with a few teachers first, or buy by bank transfer or invoice.
+              We reply to your email within one business day.
+            </p>
+            <form data-lead-form data-source="landing-org-en" class="mt-8 flex flex-col gap-4 rounded-2xl border border-line bg-elevated shadow-card p-6" novalidate>
+              <label class="flex flex-col gap-1 text-sm font-medium text-ink">
+                Organization name
+                <input name="organizationName" required maxlength="120" autocomplete="organization" placeholder="e.g. Lincoln High School" class="h-11 w-full rounded-xl border border-line bg-page px-3 text-base font-normal text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
+              </label>
+              <label class="flex flex-col gap-1 text-sm font-medium text-ink">
+                Email
+                <input name="email" type="email" required maxlength="254" autocomplete="email" inputmode="email" class="h-11 w-full rounded-xl border border-line bg-page px-3 text-base font-normal text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
+              </label>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <label class="flex flex-col gap-1 text-sm font-medium text-ink">
+                  Phone (optional)
+                  <input name="phone" type="tel" maxlength="40" autocomplete="tel" inputmode="tel" class="h-11 w-full rounded-xl border border-line bg-page px-3 text-base font-normal text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
+                </label>
+                <label class="flex flex-col gap-1 text-sm font-medium text-ink">
+                  How many people?
+                  <input name="memberCount" maxlength="20" inputmode="numeric" class="h-11 w-full rounded-xl border border-line bg-page px-3 text-base font-normal text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
+                </label>
+              </div>
+              <label class="flex flex-col gap-1 text-sm font-medium text-ink">
+                What do you need?
+                <select name="kind" class="h-11 w-full rounded-xl border border-line bg-page px-3 text-base font-normal text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+                  <option value="pilot">A free pilot (try it with a few teachers first)</option>
+                  <option value="invoice">Buy by bank transfer or invoice</option>
+                  <option value="quote">A custom quote</option>
+                </select>
+              </label>
+              <label class="flex flex-col gap-1 text-sm font-medium text-ink">
+                Your note (optional)
+                <textarea name="note" rows="3" maxlength="1000" class="w-full rounded-xl border border-line bg-page px-3 py-2 text-base font-normal text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"></textarea>
+              </label>
+              <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
+              <button type="submit" class="inline-flex h-12 items-center justify-center rounded-full bg-brand px-6 text-base font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-page disabled:opacity-60">Send</button>
+              <p data-lead-status role="status" aria-live="polite" class="text-sm text-muted"></p>
+            </form>
           </div>
         </section>
 
@@ -422,6 +478,33 @@
                 Yes. Email us; after the agreement and invoice we load the credits
                 into your organization pool. With card checkout the credits reach
                 the pool as soon as payment completes.
+              </p>
+            </details>
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+              >
+                <span>We are a public school and cannot pay by card. What now?</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <p class="pb-4 text-sm text-muted">
+                A card is not required. Pick "bank transfer or invoice" in the
+                <a href="#quote" class="font-semibold text-brand-fg underline hover:text-ink">form</a>
+                and we prepare a quote and invoice in your organization's name. Once
+                payment arrives we load the credits into your pool.
+              </p>
+            </details>
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+              >
+                <span>Can we add students too?</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <p class="pb-4 text-sm text-muted">
+                Organization accounts are for teachers and staff; members must be over
+                18. Teachers can send the documents they make to students with a link
+                that needs no account, or print and hand them out.
               </p>
             </details>
             <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
@@ -587,5 +670,6 @@
       })();
     </script>
     <script src="../theme.js" defer></script>
+    <script src="../lead-form.js" defer></script>
   </body>
 </html>

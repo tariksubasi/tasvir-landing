@@ -105,7 +105,7 @@
               data-cta="org-header"
               class="inline-flex h-11 shrink-0 items-center rounded-full bg-brand px-4 text-sm font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-page"
             >
-              <span class="sm:hidden">Başla</span>
+              <span class="sm:hidden">Kurum aç</span>
               <span class="hidden sm:inline">Kurum hesabı oluştur</span>
             </a>
             <details class="nav-menu relative lg:hidden" data-nav-menu>
@@ -155,10 +155,10 @@
               >Kurum hesabı oluştur</a
             >
             <a
-              href="mailto:support@tasvir.ai?subject=Kurumsal%20teklif%20talebi&body=Kurum%20ad%C4%B1%3A%0AKullan%C4%B1c%C4%B1%20say%C4%B1s%C4%B1%3A%0A%C3%96deme%20tercihi%20(kart%20%2F%20havale%20%2F%20e-fatura)%3A%0ATelefon%3A"
+              href="#teklif"
               data-track="org-hero-quote"
               class="inline-flex h-14 w-full items-center justify-center rounded-full border border-line bg-elevated px-8 text-base font-semibold text-ink shadow-card transition hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:w-auto"
-              >Teklif veya pilot iste</a
+              >Ücretsiz pilot veya teklif iste</a
             >
           </div>
           <p class="text-sm text-muted">
@@ -315,26 +315,80 @@
               <div class="rounded-2xl border border-line bg-elevated shadow-card p-6 text-center">
                 <p class="text-sm text-muted">10.000 kredi</p>
                 <p class="mt-2 text-3xl font-extrabold text-ink">$89.99</p>
+                <p class="mt-2 text-sm font-medium text-ink">≈ 270–2.000 sayfa doküman</p>
               </div>
               <div class="rounded-2xl border-2 border-brand bg-elevated shadow-card p-6 text-center">
                 <p class="text-sm text-muted">30.000 kredi</p>
                 <p class="mt-2 text-3xl font-extrabold text-ink">$264.99</p>
+                <p class="mt-2 text-sm font-medium text-ink">≈ 810–6.000 sayfa doküman</p>
               </div>
               <div class="rounded-2xl border border-line bg-elevated shadow-card p-6 text-center">
                 <p class="text-sm text-muted">100.000 kredi</p>
                 <p class="mt-2 text-3xl font-extrabold text-ink">$869.99</p>
+                <p class="mt-2 text-sm font-medium text-ink">≈ 2.700–20.000 sayfa doküman</p>
               </div>
             </div>
+            <p class="mx-auto mt-4 max-w-2xl text-center text-sm text-muted">
+              Sayfa sayısı seçilen kaliteye ve görsellere göre değişir: sade sayfalar
+              üst sınıra, yapay zekâ görselli sayfalar alt sınıra yakındır. Örneğin
+              30 öğretmenin her biri dönemde 10 görselli sayfa üretirse 30.000 kredi yeter.
+            </p>
             <p class="mt-6 text-center text-sm text-muted">
               Havale, e-fatura, pilot ya da özel teklif için
               <a
-                href="mailto:support@tasvir.ai?subject=Kurumsal%20teklif%20talebi&body=Kurum%20ad%C4%B1%3A%0AKullan%C4%B1c%C4%B1%20say%C4%B1s%C4%B1%3A%0A%C3%96deme%20tercihi%20(kart%20%2F%20havale%20%2F%20e-fatura)%3A%0ATelefon%3A"
+                href="#teklif"
                 data-track="org-pricing-quote"
                 class="font-semibold text-brand-fg underline hover:text-ink"
-                >support@tasvir.ai</a
+                >formu doldurun</a
               >
-              adresine yazın.
+              ya da support@tasvir.ai adresine yazın.
             </p>
+          </div>
+        </section>
+
+        <!-- Quote / pilot request -->
+        <section id="teklif" class="w-full scroll-mt-20 border-t border-line bg-page">
+          <div class="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-14">
+            <h2 class="text-center text-2xl font-bold tracking-tight sm:text-3xl">Ücretsiz pilot veya teklif isteyin</h2>
+            <p class="mx-auto mt-3 max-w-xl text-center text-muted">
+              Birkaç öğretmeninizle önce deneyin ya da havale / e-fatura ile satın alın.
+              En geç bir iş günü içinde e-postanıza dönüyoruz.
+            </p>
+            <form data-lead-form data-source="landing-org-tr" class="mt-8 flex flex-col gap-4 rounded-2xl border border-line bg-elevated shadow-card p-6" novalidate>
+              <label class="flex flex-col gap-1 text-sm font-medium text-ink">
+                Kurum adı
+                <input name="organizationName" required maxlength="120" autocomplete="organization" placeholder="Örn. Atatürk Anadolu Lisesi" class="h-11 w-full rounded-xl border border-line bg-page px-3 text-base font-normal text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
+              </label>
+              <label class="flex flex-col gap-1 text-sm font-medium text-ink">
+                E-posta
+                <input name="email" type="email" required maxlength="254" autocomplete="email" inputmode="email" class="h-11 w-full rounded-xl border border-line bg-page px-3 text-base font-normal text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
+              </label>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <label class="flex flex-col gap-1 text-sm font-medium text-ink">
+                  Telefon (isteğe bağlı)
+                  <input name="phone" type="tel" maxlength="40" autocomplete="tel" inputmode="tel" class="h-11 w-full rounded-xl border border-line bg-page px-3 text-base font-normal text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
+                </label>
+                <label class="flex flex-col gap-1 text-sm font-medium text-ink">
+                  Kaç kişi kullanacak?
+                  <input name="memberCount" maxlength="20" inputmode="numeric" class="h-11 w-full rounded-xl border border-line bg-page px-3 text-base font-normal text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
+                </label>
+              </div>
+              <label class="flex flex-col gap-1 text-sm font-medium text-ink">
+                Ne istiyorsunuz?
+                <select name="kind" class="h-11 w-full rounded-xl border border-line bg-page px-3 text-base font-normal text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+                  <option value="pilot">Ücretsiz pilot (önce birkaç öğretmenle deneyelim)</option>
+                  <option value="invoice">Havale / e-fatura ile satın alma</option>
+                  <option value="quote">Özel teklif</option>
+                </select>
+              </label>
+              <label class="flex flex-col gap-1 text-sm font-medium text-ink">
+                Notunuz (isteğe bağlı)
+                <textarea name="note" rows="3" maxlength="1000" class="w-full rounded-xl border border-line bg-page px-3 py-2 text-base font-normal text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"></textarea>
+              </label>
+              <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
+              <button type="submit" class="inline-flex h-12 items-center justify-center rounded-full bg-brand px-6 text-base font-semibold text-white shadow-card transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-page disabled:opacity-60">Gönder</button>
+              <p data-lead-status role="status" aria-live="polite" class="text-sm text-muted"></p>
+            </form>
           </div>
         </section>
 
@@ -353,6 +407,32 @@
                 Evet. Bize yazın; sözleşme ve faturanın ardından krediyi kurum
                 havuzunuza biz yükleriz. Kartla ödemede kredi ödeme biter bitmez
                 havuza eklenir.
+              </p>
+            </details>
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+              >
+                <span>Devlet okuluyuz, kartla ödeyemiyoruz. Ne yapmalıyız?</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <p class="pb-4 text-sm text-muted">
+                Kart şart değil. <a href="#teklif" class="font-semibold text-brand-fg underline hover:text-ink">Formda</a>
+                "Havale / e-fatura" seçin; kurumunuz adına teklif ve fatura
+                hazırlayalım. Ödeme gelince krediyi kurum havuzunuza biz yükleriz.
+              </p>
+            </details>
+            <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [&::-webkit-details-marker]:hidden"
+              >
+                <span>Öğrencileri de ekleyebilir miyiz?</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="h-5 w-5 shrink-0 text-brand-fg transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <p class="pb-4 text-sm text-muted">
+                Kurum hesabı öğretmen ve personel içindir; üyelerin 18 yaşından büyük
+                olması gerekir. Öğretmenlerin hazırladığı dokümanları öğrencilere
+                kayıt gerektirmeyen bir linkle gönderebilir ya da yazdırıp dağıtabilirsiniz.
               </p>
             </details>
             <details class="group rounded-2xl border border-line bg-elevated shadow-card px-5">
@@ -518,5 +598,6 @@
       })();
     </script>
     <script src="../../theme.js" defer></script>
+    <script src="../../lead-form.js" defer></script>
   </body>
 </html>
