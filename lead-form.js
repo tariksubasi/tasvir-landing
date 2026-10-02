@@ -9,6 +9,8 @@
       done: "Talebiniz alındı. En geç bir iş günü içinde e-postanıza dönüyoruz.",
       failed:
         "Talebiniz şu anda gönderilemedi. Bilgileriniz formda duruyor; tekrar deneyin ya da support@tasvir.ai adresine yazın.",
+      throttled:
+        "Bu bağlantıdan çok fazla talep gönderildi. Bir saat sonra tekrar deneyin ya da doğrudan support@tasvir.ai adresine yazın.",
     },
     en: {
       invalid: "Please enter your organization's name and a valid email address.",
@@ -16,6 +18,8 @@
       done: "We got your request and will reply to your email within one business day.",
       failed:
         "Your request could not be sent right now. Your details are still in the form; try again or write to support@tasvir.ai.",
+      throttled:
+        "Too many requests were sent from this connection. Try again in an hour or write to support@tasvir.ai directly.",
     },
   };
   var t = MESSAGES[document.documentElement.lang === "tr" ? "tr" : "en"];
@@ -46,17 +50,23 @@
         .then(function (response) {
           return response.json().then(
             function (body) {
-              return { ok: response.ok, body: body };
+              return { ok: response.ok, status: response.status, body: body };
             },
             function () {
-              return { ok: response.ok, body: null };
+              return { ok: response.ok, status: response.status, body: null };
             }
           );
         })
         .then(function (result) {
           if (!result.ok) {
-            var serverMessage = result.body && result.body.error && result.body.error.message;
-            status.textContent = serverMessage && t === MESSAGES.tr ? serverMessage : t.failed;
+            var error = (result.body && result.body.error) || {};
+            if (error.code === "ORGANIZATION_LEAD_THROTTLED" || result.status === 429) {
+              status.textContent = t.throttled;
+            } else if (error.code === "ORGANIZATION_LEAD_INVALID") {
+              status.textContent = t.invalid;
+            } else {
+              status.textContent = error.message && t === MESSAGES.tr ? error.message : t.failed;
+            }
             submit.disabled = false;
             return;
           }
