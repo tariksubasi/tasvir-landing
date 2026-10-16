@@ -106,6 +106,14 @@
           if (!turkishLang) turkishLang = isTurkishTag(navigator.language);
         } catch (e) {}
 
+        // Keep the referrer before the language redirect replaces it with this page.
+        try {
+          var refHost = document.referrer ? new URL(document.referrer).hostname : "";
+          if (refHost && !/(^|\.)tasvir\.ai$/.test(refHost) && !sessionStorage.getItem("tasvir:from")) {
+            sessionStorage.setItem("tasvir:from", refHost);
+          }
+        } catch (e) {}
+
         if (inTurkey || turkishLang) {
           window.location.replace("/tr/" + window.location.search);
         }
@@ -1332,10 +1340,21 @@
         // this page and to the exact CTA that produced it.
         function tagAppLinks() {
           var params = new URLSearchParams(window.location.search);
+          // The site a visitor came from before the landing (search, GitHub, a post),
+          // kept for the tab so a hop between our own pages does not lose it.
+          var fromHost = "";
+          try {
+            var refHost = document.referrer ? new URL(document.referrer).hostname : "";
+            if (refHost && !/(^|\.)tasvir\.ai$/.test(refHost) && !sessionStorage.getItem("tasvir:from")) {
+              sessionStorage.setItem("tasvir:from", refHost);
+            }
+            fromHost = sessionStorage.getItem("tasvir:from") || "";
+          } catch (e) {}
           document.querySelectorAll("[data-app-link]").forEach(function (link) {
             var url = new URL(link.href);
             url.searchParams.set("src", "landing");
             url.searchParams.set("cta", link.getAttribute("data-cta") || "unknown");
+            if (fromHost) url.searchParams.set("from", fromHost);
             url.searchParams.set("lang", currentLang);
             ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(
               function (key) {

@@ -586,10 +586,21 @@
         }
 
         var params = new URLSearchParams(window.location.search);
+        // The site a visitor came from before the landing (search, GitHub, a post),
+        // kept for the tab so a hop between our own pages does not lose it.
+        var fromHost = "";
+        try {
+          var refHost = document.referrer ? new URL(document.referrer).hostname : "";
+          if (refHost && !/(^|\.)tasvir\.ai$/.test(refHost) && !sessionStorage.getItem("tasvir:from")) {
+            sessionStorage.setItem("tasvir:from", refHost);
+          }
+          fromHost = sessionStorage.getItem("tasvir:from") || "";
+        } catch (e) {}
         document.querySelectorAll("[data-app-link]").forEach(function (link) {
           var url = new URL(link.href);
           url.searchParams.set("src", "landing-org-tr");
           url.searchParams.set("cta", link.getAttribute("data-cta") || "unknown");
+          if (fromHost) url.searchParams.set("from", fromHost);
           url.searchParams.set("lang", LANG);
           ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(
             function (key) {
