@@ -9,7 +9,26 @@
 <link rel="canonical" href="https://app.tasvir.ai/c/3b9c35a6b2ea2c8fbd118ab4e5285616e626448865ca5121314b8a09df27ebd7/1">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <title>TYT Kimya · Atom ve Periyodik Sistem · Tasvir</title>
-<script>location.replace("https://app.tasvir.ai/c/3b9c35a6b2ea2c8fbd118ab4e5285616e626448865ca5121314b8a09df27ebd7/1");</script>
+<script>
+// Short links go into emails, LinkedIn messages and posts. Carry their tags on
+// so the signup is still attributed: incoming utm_* pass through, ?c=NAME is a
+// short campaign tag, and the site the visitor came from goes along as from.
+(function () {
+  var target = new URL("https://app.tasvir.ai/c/3b9c35a6b2ea2c8fbd118ab4e5285616e626448865ca5121314b8a09df27ebd7/1");
+  try {
+    var params = new URLSearchParams(location.search);
+    params.forEach(function (value, key) {
+      if (key.indexOf("utm_") === 0) target.searchParams.set(key, value);
+    });
+    if (params.get("c") && !params.get("utm_campaign")) target.searchParams.set("utm_campaign", params.get("c"));
+    if (!target.searchParams.get("utm_content")) target.searchParams.set("utm_content", "ornek-atom-ve-periyodik-sistem");
+    target.searchParams.set("src", "short-link");
+    var refHost = document.referrer ? new URL(document.referrer).hostname : "";
+    if (refHost && !/(^|\.)tasvir\.ai$/.test(refHost)) target.searchParams.set("from", refHost);
+  } catch (e) {}
+  location.replace(target.toString());
+})();
+</script>
 </head>
 <body style="font-family:Arial,Helvetica,sans-serif;padding:24px">
 <p>TYT Kimya · Atom ve Periyodik Sistem açılıyor. Açılmazsa <a href="https://app.tasvir.ai/c/3b9c35a6b2ea2c8fbd118ab4e5285616e626448865ca5121314b8a09df27ebd7/1">buraya tıklayın</a>.</p>

@@ -3833,6 +3833,8 @@
           url.searchParams.set("src", "landing-tr-yks");
           url.searchParams.set("cta", link.getAttribute("data-cta") || "unknown");
           if (fromHost) url.searchParams.set("from", fromHost);
+          // ?c=NAME is the short campaign tag used in messages and posts.
+          if (params.get("c") && !params.get("utm_campaign")) url.searchParams.set("utm_campaign", params.get("c"));
           url.searchParams.set("lang", LANG);
           ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(
             function (key) {
