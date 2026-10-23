@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-itunes-app" content="app-id=6787442701" />
+    <title>Get the Tasvir app — iPhone and Android</title>
+    <meta name="description" content="Tasvir for iPhone and Android. One link: phones go straight to their app store, computers see both stores and a QR code." />
+    <link rel="canonical" href="https://tasvir.ai/app/" />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/svg+xml" href="../icon.svg" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script>
+      // One link for READMEs, posts, messages and print: a phone goes straight
+      // to its own store, anything else stays here and sees both badges and a
+      // QR code. ?c=NAME (or utm_campaign) names the campaign; Google Play gets
+      // it as the install referrer, the App Store as ct.
+      (function () {
+        var IOS = "https://apps.apple.com/app/id6787442701";
+        var PLAY = "https://play.google.com/store/apps/details?id=com.ulug.tasvir";
+        var params = new URLSearchParams(window.location.search);
+        var campaign = (params.get("c") || params.get("utm_campaign") || "app-link").slice(0, 60);
+        var source = params.get("utm_source") || "";
+        if (!source) {
+          try {
+            var host = document.referrer ? new URL(document.referrer).hostname : "";
+            source = host && !/(^|\.)tasvir\.ai$/.test(host) ? host : "tasvir_app_link";
+          } catch (e) {
+            source = "tasvir_app_link";
+          }
+        }
+        var iosUrl = IOS + "?mt=8&ct=" + encodeURIComponent(campaign);
+        var playUrl =
+          PLAY +
+          "&referrer=" +
+          encodeURIComponent("utm_source=" + source + "&utm_medium=app_link&utm_campaign=" + campaign);
+        window.__TASVIR_STORE_LINKS__ = { ios: iosUrl, android: playUrl };
+
+        var ua = navigator.userAgent || "";
+        var isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+        var isAndroid = /Android/i.test(ua);
+        if (isIOS) window.location.replace(iosUrl);
+        else if (isAndroid) window.location.replace(playUrl);
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen bg-page font-sans text-ink antialiased">
+    <main class="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-8 px-4 py-12 text-center">
+      <a href="/" class="inline-flex items-center gap-2 text-lg font-bold" aria-label="Tasvir">
+        <img src="../icon.svg" alt="" width="40" height="40" class="h-10 w-10 rounded-xl" />
+        Tasvir
+      </a>
+      <div>
+        <h1 class="text-3xl font-bold tracking-tight sm:text-4xl" data-copy="title">Tasvir on your phone</h1>
+        <p class="mt-3 text-muted" data-copy="lead">The same account and the same credits on the web, iPhone and Android.</p>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a id="store-ios" href="https://apps.apple.com/app/id6787442701" class="inline-flex rounded-lg transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand" rel="noopener">
+          <img src="../assets/badges/app-store-en.svg" alt="Download on the App Store" width="162" height="48" class="h-12 w-auto" />
+        </a>
+        <a id="store-android" href="https://play.google.com/store/apps/details?id=com.ulug.tasvir" class="inline-flex rounded-lg transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand" rel="noopener">
+          <img src="../assets/badges/google-play-en.svg" alt="Get it on Google Play" width="138" height="48" class="h-12 w-auto" />
+        </a>
+      </div>
+      <figure class="flex flex-col items-center gap-2 rounded-2xl border border-line bg-elevated p-4 shadow-card">
+        <img src="../assets/badges/qr-app.svg" alt="QR code that opens this page on your phone" width="160" height="160" class="h-40 w-40" />
+        <figcaption class="text-sm text-muted" data-copy="qr">Scan with your phone camera</figcaption>
+      </figure>
+      <a href="https://app.tasvir.ai/" class="inline-flex min-h-11 items-center text-sm font-semibold text-brand-fg underline underline-offset-4" data-copy="web">Or keep going on the web &rarr;</a>
+    </main>
+    <script>
+      (function () {
+        var links = window.__TASVIR_STORE_LINKS__;
+        if (links) {
+          document.getElementById("store-ios").href = links.ios;
+          document.getElementById("store-android").href = links.android;
+        }
+        var tr = /^tr\b/i.test(navigator.language || "") || /^\/tr\//.test(document.referrer.replace(/^https?:\/\/[^/]+/, ""));
+        if (!tr) return;
+        document.documentElement.lang = "tr";
+        var copy = {
+          title: "Tasvir telefonunda da",
+          lead: "Webde, iPhone'da ve Android'de aynı hesap, aynı kredi.",
+          qr: "Telefonunun kamerasıyla okut",
+          web: "Ya da webde devam et →",
+        };
+        document.querySelectorAll("[data-copy]").forEach(function (node) {
+          var text = copy[node.getAttribute("data-copy")];
+          if (text) node.textContent = text;
+        });
+        document.querySelector("#store-ios img").alt = "App Store'dan indirin";
+        document.querySelector("#store-android img").alt = "Google Play'den alın";
+      })();
+    </script>
+    <script src="../theme.js" defer></script>
+  </body>
+</html>
